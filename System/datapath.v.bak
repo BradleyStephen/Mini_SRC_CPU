@@ -1,0 +1,20 @@
+module datapath(input clk,);
+		
+	register r0(clr, clk, data_in, data_out);
+	register r1(clr, clk, data_in, data_out);
+	register r2(clr, clk, data_in, data_out);
+	register r3(clr, clk, data_in, data_out);
+	register r4(clr, clk, data_in, data_out);
+	register r5(clr, clk, data_in, data_out);
+	register r6(clr, clk, data_in, data_out);
+	register r7(clr, clk, data_in, data_out);
+	register r8(clr, clk, data_in, data_out);
+	register r9(clr, clk, data_in, data_out);
+	register r10(clr, clk, data_in, data_out);
+	register r11(clr, clk, data_in, data_out);
+	register r12(clr, clk, data_in, data_out);
+	register r13(clr, clk, data_in, data_out);
+	register r14(clr, clk, data_in, data_out);
+	register r15(clr, clk, data_in, data_out);
+	
+endmodule
