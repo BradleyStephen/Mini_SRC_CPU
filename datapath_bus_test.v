@@ -1,4 +1,4 @@
-module cpu_top (
+module datapath_bus_test (
     input wire clk,
     input wire reset,
     input wire load,

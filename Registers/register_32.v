@@ -1,4 +1,4 @@
-module register (
+module register_32 (
     input wire clk,             // Clock signal
     input wire reset,           // Asynchronous reset (active high)
     input wire load,            // Load enable signal

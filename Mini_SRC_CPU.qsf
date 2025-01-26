@@ -18,14 +18,14 @@
 #
 # Quartus Prime
 # Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-# Date created = 12:59:47  January 15, 2025
+# Date created = 15:52:59  January 26, 2025
 #
 # -------------------------------------------------------------------------- #
 #
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		MiniSRC_assignment_defaults.qdf
+#		Mini_SRC_CPU_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -38,9 +38,9 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CEBA4F23C7
-set_global_assignment -name TOP_LEVEL_ENTITY MiniSRC
+set_global_assignment -name TOP_LEVEL_ENTITY Mini_SRC_CPU
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:59:47  JANUARY 15, 2025"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:52:58  JANUARY 26, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
@@ -49,8 +49,16 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name VERILOG_FILE Registers/register_file.v
+set_global_assignment -name VERILOG_FILE Registers/register_64_erik.v
+set_global_assignment -name VERILOG_FILE Registers/register_32_erik.v
+set_global_assignment -name VERILOG_FILE Registers/register.v
+set_global_assignment -name VERILOG_FILE Registers/program_counter_erik.v
+set_global_assignment -name VERILOG_FILE Registers/pc.v
+set_global_assignment -name VERILOG_FILE Registers/ir.v
+set_global_assignment -name VERILOG_FILE datapath_bus_test.v
 set_global_assignment -name VERILOG_FILE datapath.v
-set_global_assignment -name VERILOG_FILE register_32.v
-set_global_assignment -name VERILOG_FILE register_64.v
+set_global_assignment -name VERILOG_FILE bus_erik.v
 set_global_assignment -name VERILOG_FILE bus.v
-set_global_assignment -name VERILOG_FILE program_counter.v
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"

@@ -18,13 +18,13 @@
 #
 # Quartus Prime
 # Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-# Date created = 12:59:47  January 15, 2025
+# Date created = 15:52:58  January 26, 2025
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "18.1"
-DATE = "12:59:47  January 15, 2025"
+DATE = "15:52:58  January 26, 2025"
 
 # Revisions
 
-PROJECT_REVISION = "MiniSRC"
+PROJECT_REVISION = "Mini_SRC_CPU"

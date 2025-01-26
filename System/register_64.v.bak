@@ -1,5 +1,0 @@
-module register_64(clr, clk, enable, [63:0] D, [63:0] Q);
-
-	
-
-endmodule
