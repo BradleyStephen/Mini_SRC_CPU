@@ -1,13 +1,11 @@
 `timescale 1ns/1ps
 
-module cpu_top_tb;
+module datapath_bus_tb;
 
     // Inputs
     reg clk;
     reg reset;
-    reg load;
-    reg [3:0] addr_in;      // Address to write to register_file
-    reg [3:0] addr_out;     // Address to read from register_file
+    reg enable;
     reg [31:0] data_in;     // Data input for register_file and special registers
     reg [4:0] reg_out_select; // Bus selection signal
 
@@ -15,10 +13,11 @@ module cpu_top_tb;
     wire [31:0] bus_out;    // Output from the bus
 
     // Instantiate Top-Level Module
-    cpu_top uut (
-        .clk(clk),
-        .reset(reset),
-        .load(load),
+    datapath DUT (
+        .clock(clk),
+        .clear(reset),
+		  .incPC(32'b0),
+        .e_r0(e_r0), .e_r1(e_r1), .e_r2(e_r2), .e_r3(e_r3)
         .addr_in(addr_in),
         .addr_out(addr_out),
         .data_in(data_in),
@@ -35,18 +34,18 @@ module cpu_top_tb;
         $display("Starting Testbench for cpu_top (Bus + Registers)");
 
         // **Step 1: Reset the System**
-        reset = 1; load = 0; addr_in = 4'b0000; addr_out = 4'b0000; data_in = 32'b0; reg_out_select = 5'b00000;
+        reset = 1; enable = 0; addr_in = 4'b0000; addr_out = 4'b0000; data_in = 32'b0; reg_out_select = 5'b00000;
         #20 reset = 0; // Deactivate reset
 
         // **Step 2: Write to Registers**
         // Write 0xDEADBEEF to R0
-        addr_in = 4'b0000; data_in = 32'hDEADBEEF; load = 1; #20; load = 0;
+        addr_in = 4'b0000; data_in = 32'hDEADBEEF; enable = 1; #20; enable = 0;
 
         // Write 0x12345678 to PC
-        data_in = 32'h12345678; load = 1; #20; load = 0;
+        data_in = 32'h12345678; enable = 1; #20; enable = 0;
 
         // Write 0xCAFEBABE to IR
-        data_in = 32'hCAFEBABE; load = 1; #20; load = 0;
+        data_in = 32'hCAFEBABE; enable = 1; #20; enable = 0;
 
         // **Step 3: Select and Verify Bus Outputs**
         // Select R0
@@ -63,7 +62,7 @@ module cpu_top_tb;
 
         // **Step 4: Test Another Register**
         // Write 0xFACECAFE to R1 and read it
-        addr_in = 4'b0001; data_in = 32'hFACECAFE; load = 1; #20; load = 0;
+        addr_in = 4'b0001; data_in = 32'hFACECAFE; enable = 1; #20; enable = 0;
         reg_out_select = 5'b00001; addr_out = 4'b0001; #20;
         $display("Bus Output (R1): %h, Expected: FACECAFE", bus_out);
 

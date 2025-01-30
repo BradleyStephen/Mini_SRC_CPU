@@ -1,4 +1,4 @@
-module register_32(input clr, input clk, input enable, input [31:0] D, output [31:0] Q);
+module register_32_erik(input clr, input clk, input enable, input [31:0] D, output [31:0] Q);
 	
 	always @(posedge clk) begin
 		if(clr)

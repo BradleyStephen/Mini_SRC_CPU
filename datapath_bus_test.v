@@ -68,7 +68,7 @@ module datapath_bus_test (
     );
 
     // Instantiate IR Register
-    ir_register ir (
+    register_32 IR (
         .clk(clk),
         .reset(reset),
         .load(load),
