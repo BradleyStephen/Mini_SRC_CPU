@@ -1,0 +1,164 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/simulation/modelsim
+vbus
+Z1 !s110 1738853332
+!i10b 1
+!s100 AG8UfkU28YYBojJzz?C_R3
+ICa4KbQbd=lL;7JW;he4A71
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1738776464
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1738853332.000000
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU
+Z7 tCvgOpt 0
+vbus_tb_erik
+R1
+!i10b 1
+!s100 Tb0n0UH4X[K`0PSBbBZNG1
+Ii7K;@=DGXo]bca;TIn`fO1
+R2
+R0
+w1738853255
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v|
+!i113 1
+R5
+R6
+R7
+vdatapath
+R1
+!i10b 1
+!s100 3]XZ@4MIVP5?YQeAdeF2X3
+I6JDa=0hS@^5nkUk3ljj3H2
+R2
+R0
+w1738852414
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z8 !s108 1738853331.000000
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v|
+!i113 1
+R5
+R6
+R7
+vmdr
+R1
+!i10b 1
+!s100 JPG?0A1e>NnFj2SeL9`DI3
+IF>IOQMj?d@ZjjJNLA[a:41
+R2
+R0
+w1738852256
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v|
+!i113 1
+R5
+Z9 !s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers
+R7
+vregister_32
+Z10 !s110 1738853331
+!i10b 1
+!s100 GQ38:>Yz1lzmnZD28ejR01
+Ii8hSJ?;;VJDh^]P1oPL_I1
+R2
+R0
+w1738245485
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v|
+!i113 1
+R5
+R9
+R7
+vregister_64
+R10
+!i10b 1
+!s100 Pe^lBbU>F80mXGTn;zn_:1
+IQ8kE<QGdo4JTPXJ@iATZZ2
+R2
+R0
+w1738779096
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v|
+!i113 1
+R5
+R9
+R7
+vregister_file
+R10
+!i10b 1
+!s100 6HXdA=5N21G7AjlTbABL]3
+Ile_zCOWUXeZQ6eigTbFb13
+R2
+R0
+w1738779960
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v
+L0 2
+R3
+r1
+!s85 0
+31
+R8
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v|
+!i113 1
+R5
+R9
+R7

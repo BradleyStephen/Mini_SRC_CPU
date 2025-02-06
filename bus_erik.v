@@ -25,14 +25,13 @@ module bus(
             5'b01101: BusMuxOut <= BusMuxIn_R13;
             5'b01110: BusMuxOut <= BusMuxIn_R14;
             5'b01111: BusMuxOut <= BusMuxIn_R15;
-            
 				5'b10000: BusMuxOut <= BusMuxIn_HI;
             5'b10001: BusMuxOut <= BusMuxIn_LO;
             5'b10010: BusMuxOut <= BusMuxIn_Zhigh;
             5'b10011: BusMuxOut <= BusMuxIn_Zlow;
             5'b10100: BusMuxOut <= BusMuxIn_PC;
             5'b10101: BusMuxOut <= BusMuxIn_MDR;
-            default: BusMuxOut <= 32'bz;
+            default: BusMuxOut <= 32'b0;
 			endcase
 		end
 	

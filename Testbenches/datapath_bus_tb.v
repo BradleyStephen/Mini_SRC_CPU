@@ -16,7 +16,6 @@ module datapath_bus_tb;
     datapath DUT (
         .clock(clk),
         .clear(reset),
-		  .incPC(32'b0),
         .e_r0(e_r0), .e_r1(e_r1), .e_r2(e_r2), .e_r3(e_r3)
         .addr_in(addr_in),
         .addr_out(addr_out),

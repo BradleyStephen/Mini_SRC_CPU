@@ -10,7 +10,8 @@ module register_64 (
     // Register data storage logic
     always @(posedge clk or posedge clr) begin
         if (clr) begin
-            Q <= 32'b0; // Clear register to zero on reset
+            Q_low <= 16'b0; // Clear register to zero on reset
+				Q_high <= 16'b0;
         end else if (enable) begin
             Q_low <= D[31:0];     // Load new data when load is high
 				Q_high <= D[63:32];
