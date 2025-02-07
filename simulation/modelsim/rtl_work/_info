@@ -8,58 +8,102 @@ z2
 !i10f 100
 cModel Technology
 Z0 dD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/simulation/modelsim
-vbus
-Z1 !s110 1738853332
+vadder_32bit
+Z1 !s110 1738927023
 !i10b 1
-!s100 AG8UfkU28YYBojJzz?C_R3
-ICa4KbQbd=lL;7JW;he4A71
+!s100 n3jR<AcIS^ki:@13UB[IN0
+IX[3?h0XBO=[hH0:_OWIa82
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1738776464
-8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v
-FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v
+w1738917056
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v
 L0 1
 Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1738853332.000000
-!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_erik.v|
+Z4 !s108 1738927023.000000
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v|
 !i113 1
 Z5 o-vlog01compat -work work
-Z6 !s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU
+Z6 !s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU
 Z7 tCvgOpt 0
-vbus_tb_erik
-R1
+valu
+Z8 !s110 1738927022
 !i10b 1
-!s100 Tb0n0UH4X[K`0PSBbBZNG1
-Ii7K;@=DGXo]bca;TIn`fO1
+!s100 PE[eQ4VEalL^z`<Hi6=Tm3
+Ie1HmSMLVhAM7`Jc2Q_=_Y0
 R2
 R0
-w1738853255
-8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v
-FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v
-L0 2
+w1738917022
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v
+L0 1
 R3
 r1
 !s85 0
 31
-R4
-!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus_tb_erik.v|
+Z9 !s108 1738927022.000000
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v|
 !i113 1
 R5
 R6
 R7
-vdatapath
-R1
+vbooth_multiplier
+R8
 !i10b 1
-!s100 3]XZ@4MIVP5?YQeAdeF2X3
-I6JDa=0hS@^5nkUk3ljj3H2
+!s100 b^gm6T?eeneQzz[9<bEod3
+IJ;KWDADf0VQCR=_8<]WQ>0
 R2
 R0
-w1738852414
+w1738917088
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v|
+!i113 1
+R5
+R6
+R7
+vbus
+R8
+!i10b 1
+!s100 AG8UfkU28YYBojJzz?C_R3
+I4>VI4`8Mk57jiM[7M_d]k2
+R2
+R0
+w1738776464
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v|
+!i113 1
+R5
+Z10 !s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU
+R7
+vdatapath
+R8
+!i10b 1
+!s100 <X_bJ0kEUnA:c58HMY07j0
+Io4fPW64cGzYEfWZHUVz3n2
+R2
+R0
+w1738926954
 8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v
 FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v
 L0 1
@@ -67,15 +111,81 @@ R3
 r1
 !s85 0
 31
-Z8 !s108 1738853331.000000
+R9
 !s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v|
+!i113 1
+R5
+R10
+R7
+vdatapath_tb_and
+R1
+!i10b 1
+!s100 hATP7Rai@lC>AgRC;GG7e3
+Ik3A;IXcJ:dLz4mUXHdgP<2
+R2
+R0
+w1738926098
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_and.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_and.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_and.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_and.v|
+!i113 1
+R5
+!s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches
+R7
+vdivider
+R8
+!i10b 1
+!s100 8P<FbLa];IChL]=C9STR^0
+I]JnNzYQRBZ^i[zGGR>BCc1
+R2
+R0
+w1738917115
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v|
+!i113 1
+R5
+R6
+R7
+vfull_adder
+R8
+!i10b 1
+!s100 cz<LYjzC@m@l7`]e:?Aa]1
+IG[AF>3I[6BX?`cJH9Y;RG2
+R2
+R0
+w1738917139
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/full_adder.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/full_adder.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/full_adder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/full_adder.v|
 !i113 1
 R5
 R6
 R7
 vmdr
-R1
+R8
 !i10b 1
 !s100 JPG?0A1e>NnFj2SeL9`DI3
 IF>IOQMj?d@ZjjJNLA[a:41
@@ -89,15 +199,37 @@ R3
 r1
 !s85 0
 31
-R4
+R9
 !s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v|
 !i113 1
 R5
-Z9 !s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers
+Z11 !s92 -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers
+R7
+vprogram_counter
+R8
+!i10b 1
+!s100 4AP=o0XYfGfYzUbT:?Uj@3
+IE5]G=Z5n0KPKgk9PB>M2h1
+R2
+R0
+w1738919561
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v|
+!i113 1
+R5
+R11
 R7
 vregister_32
-Z10 !s110 1738853331
+R8
 !i10b 1
 !s100 GQ38:>Yz1lzmnZD28ejR01
 Ii8hSJ?;;VJDh^]P1oPL_I1
@@ -111,15 +243,15 @@ R3
 r1
 !s85 0
 31
-R8
+R9
 !s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v|
 !i113 1
 R5
-R9
+R11
 R7
 vregister_64
-R10
+R8
 !i10b 1
 !s100 Pe^lBbU>F80mXGTn;zn_:1
 IQ8kE<QGdo4JTPXJ@iATZZ2
@@ -133,15 +265,15 @@ R3
 r1
 !s85 0
 31
-R8
+R9
 !s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v|
 !i113 1
 R5
-R9
+R11
 R7
 vregister_file
-R10
+R8
 !i10b 1
 !s100 6HXdA=5N21G7AjlTbABL]3
 Ile_zCOWUXeZQ6eigTbFb13
@@ -155,10 +287,32 @@ R3
 r1
 !s85 0
 31
-R8
+R9
 !s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v|
 !i113 1
 R5
+R11
+R7
+vsubtractor_32bit
+R8
+!i10b 1
+!s100 2C1zFUZcOm0aP6l::CBif1
+IbUgTd;H07`Vge0hDVmQ<G2
+R2
+R0
+w1738917175
+8D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/subtractor_32bit.v
+FD:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/subtractor_32bit.v
+L0 1
+R3
+r1
+!s85 0
+31
 R9
+!s107 D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/subtractor_32bit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU|D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/subtractor_32bit.v|
+!i113 1
+R5
+R6
 R7

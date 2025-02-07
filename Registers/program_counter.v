@@ -1,14 +1,20 @@
-module program_counter(input clr, input clk, input enable, input incPC, output [31:0] D, output [31:0] Q);
+module program_counter(
+	input wire clr,
+	input wire clk,
+	input wire enable,
+	input wire incPC,
+	input wire [31:0] D,
+	output reg [31:0] Q
+);
 
-	always @(negedge clk) begin
+	always @(posedge clk or posedge clr) begin
 		
 		if (clr)
-			Q <= 0;
+			Q <= 32'b0;
 		else if (enable)
 			Q <= D;
 		else if (incPC)
 			Q <= Q + 1;
-		end
 		
 	end
 

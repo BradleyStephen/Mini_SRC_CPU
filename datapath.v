@@ -4,17 +4,24 @@ module datapath(
 	//register write enable signals
 	input wire e_PC, e_IR, e_Y, e_Z, e_HI, e_LO, e_MDR, e_MAR, e_GP,
 	
-	input wire [3:0] reg_addr,
+	input wire [3:0] GP_addr,
 	
 	input wire [31:0] Mdatain,
-	input wire read,
+	input wire MDR_read,
+	
+	input wire [3:0] ALU_op,
 	
 	//data signals
 	input wire [4:0] BusDataSelect
 
 );
-
-	wire [31:0] GP_r0, GP_r1, GP_r2, GP_r3, GP_r4, GP_r5, GP_r6, GP_r7, GP_r8, GP_r9, GP_r10, GP_r11, GP_r12, GP_r13, GP_r14, GP_r15;
+	
+	wire [31:0] ALU_A;
+	wire [63:0] ALU_C;
+	wire isZero;
+	
+	wire [31:0] toControl;
+	wire [31:0] Maddrout;
 	
 	wire [31:0] BusData, BusIn_R0, BusIn_R1, BusIn_R2, BusIn_R3, BusIn_R4, BusIn_R5, BusIn_R6, BusIn_R7;
 	wire [31:0] BusIn_R8, BusIn_R9, BusIn_R10, BusIn_R11, BusIn_R12, BusIn_R13, BusIn_R14, BusIn_R15;
@@ -24,46 +31,31 @@ module datapath(
 	register_file GP_reg (
 		clear,
 		clock,
-		reg_addr,
+		GP_addr,
 		e_GP,
 		BusData,
-		GP_r0, GP_r1, GP_r2, GP_r3,
-		GP_r4, GP_r5, GP_r6, GP_r7,
-		GP_r8, GP_r9, GP_r10, GP_r11,
-		GP_r12, GP_r13, GP_r14, GP_r15
+		BusIn_R0, BusIn_R1, BusIn_R2, BusIn_R3,
+		BusIn_R4, BusIn_R5, BusIn_R6, BusIn_R7,
+		BusIn_R8, BusIn_R9, BusIn_R10, BusIn_R11,
+		BusIn_R12, BusIn_R13, BusIn_R14, BusIn_R15
 	);
 	
-	assign BusIn_R0 = GP_r0;
-	assign BusIn_R1 = GP_r1;
-	assign BusIn_R2 = GP_r2;
-	assign BusIn_R3 = GP_r1;
-	assign BusIn_R4 = GP_r4;
-	assign BusIn_R5 = GP_r5;
-	assign BusIn_R6 = GP_r6;
-	assign BusIn_R7 = GP_r7;
-	assign BusIn_R8 = GP_r8;
-	assign BusIn_R9 = GP_r9;
-	assign BusIn_R10 = GP_r10;
-	assign BusIn_R11 = GP_r11;
-	assign BusIn_R12 = GP_r12;
-	assign BusIn_R13 = GP_r13;
-	assign BusIn_R14 = GP_r14;
-	assign BusIn_R15 = GP_r15;
-	
 	//instruction registers
-	//program_counter PC(clear, clock, e_PC, inc_PC, BusData, BusIn_PC);
-	register_32 IR(clear, clock, e_IR, BusData, BusIn_IR);
+	program_counter PC(clear, clock, e_PC, incPC, BusData, BusIn_PC);
+	register_32 IR(clear, clock, e_IR, BusData, toControl);
 	
 	//ALU and related registers
-	//register_32 Y(clear, clock, e_Y, BusData, toALU);	
-	register_64 Z(clear, clock, e_Z, BusData, BusIn_Zlow, BusIn_zhigh);
+	register_32 Y(clear, clock, e_Y, BusData, ALU_A);
 	
+	alu ALU(ALU_A, BusData, ALU_op, ALU_C, isZero);
+	
+	register_64 Z(clear, clock, e_Z, ALU_C, BusIn_Zlow, BusIn_Zhigh);
 	register_32 HI(clear, clock, e_HI, BusData, BusIn_HI);
 	register_32 LO(clear, clock, e_LO, BusData, BusIn_LO);
 
 	//memory "gateway"
-	//register_32 MAR(clear, clock, e_MAR, BusData, toMemory);
-	mdr MDR(clear, clock, e_MDR, read, BusData, Mdatain, BusIn_MDR);
+	register_32 MAR(clear, clock, e_MAR, BusData, Maddrout);
+	mdr MDR(clear, clock, e_MDR, MDR_read, BusData, Mdatain, BusIn_MDR);
 	
 	//bus
 	bus bus(.data_select(BusDataSelect), .BusMuxIn_R0(BusIn_R0), .BusMuxIn_R1(BusIn_R1), .BusMuxIn_R2(BusIn_R2), .BusMuxIn_R3(BusIn_R3),

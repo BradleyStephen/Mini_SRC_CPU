@@ -1,62 +1,54 @@
 `timescale 1ns/10ps
 module datapath_tb_and;
 
-	reg PC_BusSelect, Zlow_BusSelect, MDR_BusSelect, R2_BusSelect, R3_BusSelect, R4_BusSelect, R5_BusSelect; // add any other signals to see _enable your simulation
-	reg MAR_enable, Z_enable, PC_enable, MDR_enable, IR_enable, Y_enable, HI_enable, LO_enable, alu_enable;
-	reg incPC, Read, R1_enable, R2_enable, R3_enable, R4_enable, R5_enable;
-	reg Clock, Clear;
+	reg clear, clock, incPC;
+	reg [3:0] GP_addr;
+	reg e_PC, e_IR, e_Y, e_Z, e_HI, e_LO, e_MDR, e_MAR, e_GP;
+	
 	reg [31:0] Mdatain;
-	reg [5:0] alu_opcode;
+	reg MDR_read;
+	
+	reg [3:0] alu_op;
+	
+	reg [4:0] BusDataSelect;
+	
 	parameter Default = 4'b0000, Reg_load1a = 4'b0001, Reg_load1b = 4'b0010, Reg_load2a = 4'b0011,
 	Reg_load2b = 4'b0100, Reg_load3a = 4'b0101, Reg_load3b = 4'b0110, T0 = 4'b0111,
 	T1 = 4'b1000, T2 = 4'b1001, T3 = 4'b1010, T4 = 4'b1011, T5 = 4'b1100;
+	
 	reg [3:0] Present_state = Default;
 	
-	parameter add=5'b00000, sub=5'b00001, AND=5'b00010, OR=5'b00011, NOT=5'b00100, mul=5'b00101, div=5'b00110, rol=5'b00111, ror=5'b01000, shr=5'b01001, shra=5'b01010,
-	shl=5'b01011, neg=5'b01100;
-	
-	DataPath DUT(
-		.w_clock(Clock),
-		.w_clear(Clear),
-		.w_IncPC(incPC),
-		.e_R1(R1_enable),
-		.e_R2(R2_enable),
-		.e_R3(R3_enable),
-		.e_R4(R4_enable),
-		.e_R5(R5_enable),
-		.e_MAR(MAR_enable),
-		.e_Z(Z_enable),
-		.e_PC(PC_enable),
-		.e_MDR(MDR_enable),
-		.e_IR(IR_enable),
-		.e_Y(Y_enable),
-		.e_HI(HI_enable),
-		.e_LO(LO_enable),
-		.s_PC(PC_BusSelect),
-		.s_Zlow(Zlow_BusSelect),
-		.s_MDR(MDR_BusSelect),
-		.s_R2(R2_BusSelect),
-		.s_R3(R3_BusSelect),
-		.s_R4(R4_BusSelect),
-		.s_R5(R5_BusSelect),
-		.w_read(Read),
-		.opcode(alu_opcode),
-		.e_alu(alu_enable),
-		.w_Mdatain(Mdatain)
+	datapath DUT(
+		.clear(clear),
+		.clock(clock),
+		.incPC(incPC),
+		.GP_addr(GP_addr),
+		.Mdatain(Mdatain),
+		.MDR_read(MDR_read),
+		.e_PC(e_PC),
+		.e_IR(e_IR),
+		.e_Y(e_Y),
+		.e_Z(e_Z),
+		.e_HI(e_HI),
+		.e_LO(e_LO),
+		.e_MDR(e_MDR),
+		.e_MAR(e_MAR),
+		.e_GP(e_GP),
+		.ALU_op(alu_op),
+		.BusDataSelect(BusDataSelect)
 	);
 	
 	// add test logic here
 	initial begin
-		Clock = 0;
-		Clear = 0;
+		clock = 0;
+		clear = 1;
 	end
 	
 	always #10 begin
-		Clock = ~Clock;
+		clock = ~clock;
 	end
-
-	always @(posedge Clock) // f_enableite state mach_enablee; if clock ris_enableg-edge
-	begin
+	
+	always @(posedge clock) begin // finite state machine; if clock rising-edge
 		case (Present_state)
 			Default : Present_state = Reg_load1a;
 			Reg_load1a : Present_state = Reg_load1b;
@@ -72,70 +64,70 @@ module datapath_tb_and;
 			T4 : Present_state = T5;
 		endcase
 	end
-
-	always @(Present_state) // do the required job _enable each state
-	begin
-		case (Present_state) // assert the required signals _enable each clock cycle
+	
+	always @(Present_state) begin // do the required job in each state
+		case (Present_state) // assert the required signals in each clock cycle
 			Default: begin
-				PC_BusSelect <= 0; Zlow_BusSelect <= 0; MDR_BusSelect <= 0; // initialize the signals
-				R2_BusSelect <= 0; R3_BusSelect <= 0; R4_BusSelect <= 0; R5_BusSelect <= 0; MAR_enable <= 0; Z_enable <= 0;
-				PC_enable <=0; MDR_enable <= 0; IR_enable <= 0; Y_enable <= 0; LO_enable <= 0; HI_enable <= 0; alu_enable <= 0;
-				incPC <= 0; Read <= 0;
-				R1_enable <= 0; R2_enable <= 0; R3_enable <= 0; R4_enable <= 0; R5_enable <= 0; Mdatain <= 32'h00000000;
+				clear <= 0;
+				BusDataSelect = 5'b00000; GP_addr = 4'b0000; // initialize the signals
+				e_MAR <= 0; e_Z <= 0; e_PC <= 0; e_MDR <= 0; e_IR <= 0; e_Y <= 0; e_GP = 0; e_HI <= 0; e_LO <= 0;
+				incPC <= 0; MDR_read <= 0; alu_op <= 4'b0000;
+				Mdatain <= 32'h000000000;
 			end
 			Reg_load1a: begin
-				Mdatain <= 32'b10110111;
-				Read = 0; MDR_enable = 0; // the first zero is there for completeness
-				Read <= 1; MDR_enable <= 1; // and the first 10ns might not be needed depend_enableg on your
-				#15 Read <= 0; MDR_enable <= 0; // implementation; same goes for the other states
+				Mdatain <= 32'h00000022;
+				MDR_read = 0; e_MDR = 0; // the first zero is there for completeness
+				MDR_read <= 1; e_MDR <= 1; // Took out #10 for '1', as it may not be needed
+				#20 MDR_read <= 0; e_MDR <= 0; // for your current implementation
 			end
 			Reg_load1b: begin
-				MDR_BusSelect <= 1; R2_enable <= 1;
-				#15 MDR_BusSelect <= 0; R2_enable <= 0; // initialize R2 with the value $12
+				BusDataSelect <= 5'b10101; GP_addr <= 4'b0011; e_GP = 1;
+				#20 e_GP <= 0; // initialize R3 with the value 0x22
 			end
 			Reg_load2a: begin
-				Mdatain <= 32'b10100110;
-				Read <= 1; MDR_enable <= 1;
-				#15 Read <= 0; MDR_enable <= 0;
+				Mdatain <= 32'h00000024;
+				MDR_read <= 1; e_MDR <= 1;
+				#20 MDR_read <= 0; e_MDR <= 0;
 			end
 			Reg_load2b: begin
-				MDR_BusSelect <= 1; R3_enable <= 1;
-				#15 MDR_BusSelect <= 0; R3_enable <= 0; // initialize R3 with the value $14
+				BusDataSelect <= 5'b10101; GP_addr <= 4'b0111; e_GP = 1;
+				#20 e_GP <= 0; // initialize R7 with the value 0x24
 			end
 			Reg_load3a: begin
-				Mdatain <= 32'h00000018;
-				Read <= 1; MDR_enable <= 1;
-				#15 Read <= 0; MDR_enable <= 0;
+				Mdatain <= 32'h00000028;
+				MDR_read <= 1; e_MDR <= 1;
+				#20 MDR_read <= 0; e_MDR <= 0;
 			end
 			Reg_load3b: begin
-				MDR_BusSelect <= 1; R1_enable <= 1;
-				#15 MDR_BusSelect <= 0; R1_enable <= 0; // initialize R1 with the value $18
+				BusDataSelect <= 5'b10101; GP_addr <= 4'b0100; e_GP = 1;
+				#20 e_GP <= 0; // initialize R4 with the value 0x28
 			end
 			T0: begin // see if you need to de-assert these signals
-				PC_BusSelect <= 1; MAR_enable <= 1; incPC <= 1; Z_enable <= 1;
-				#15 PC_BusSelect <= 0; MAR_enable <= 0; incPC <= 0; Z_enable <= 0;
+				BusDataSelect <= 5'b10100; e_MAR <= 1; incPC <= 1; e_Z <= 1;
+				#20 e_MAR <= 0; incPC <= 0; e_Z <= 0;
 			end
 			T1: begin
-				Zlow_BusSelect <= 1; PC_enable <= 1; Read <= 1; MDR_enable <= 1;
-				Mdatain <= 32'h28918000; // opcode for “and R1, R2, R3”
-				#15 Zlow_BusSelect <= 0; PC_enable <= 0; MDR_enable <= 0;
+				BusDataSelect <= 5'b10011; e_PC <= 1; MDR_read <= 1; e_MDR <= 1;
+				Mdatain <= 32'h2A2B8000; // opcode for “and R4, R3, R7”
+				#20 e_PC <= 0; MDR_read <= 0; e_MDR <= 0;
 			end
 			T2: begin
-				MDR_BusSelect <= 1; IR_enable <= 1;
-				#15 MDR_BusSelect <= 0; IR_enable <= 0;
+				BusDataSelect <= 5'b10101; e_IR <= 1;
+				#20 e_IR <= 0;
 			end
 			T3: begin
-				R2_BusSelect <= 1; Y_enable <= 1;
-				#15 R2_BusSelect <= 0; Y_enable <= 0;
+				BusDataSelect <= 5'b00011; e_Y <= 1;
+				#20 e_Y <= 0;
 			end
 			T4: begin
-				R3_BusSelect <= 1; alu_opcode <= AND; Z_enable <= 1; alu_enable <= 1;
-				#20 R3_BusSelect <= 0; Z_enable <= 0; alu_enable <= 0;
+				BusDataSelect <= 5'b00111; alu_op = 4'b0000; e_Z <= 1;
+				#20 e_Z <= 0;
 			end
 			T5: begin
-				Zlow_BusSelect <= 1; R1_enable <= 1; LO_enable <= 1;
-				#15 Zlow_BusSelect <= 0; R1_enable <= 0; LO_enable <= 0;
+				BusDataSelect <= 5'b10011; GP_addr <= 4'b0100; e_GP <= 1;
+				#20 e_GP <= 0;
 			end
 		endcase
 	end
+
 endmodule
