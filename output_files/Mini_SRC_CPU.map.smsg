@@ -1,1 +1,0 @@
-Warning (10268): Verilog HDL information at datapath_tb_and.v(68): always construct contains both blocking and non-blocking assignments File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_and.v Line: 68
