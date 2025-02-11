@@ -13,12 +13,15 @@ module alu(
     wire [31:0] srl_out = A >> shift_amount; // Logical shift right
     wire [31:0] rol_out = (A << shift_amount) | (A >> (32 - shift_amount)); // Rotate left
     wire [31:0] ror_out = (A >> shift_amount) | (A << (32 - shift_amount)); // Rotate right
+    wire [31:0] sra_out = $signed(A) >>> shift_amount; // SHRA - Arithmetic shift right, keeps MSB intact
+
 
 
     // Internal wires for each operation
     wire [31:0] and_out;
     wire [31:0] or_out;
     wire [31:0] not_out;
+    wire [31:0] neg_out;
     wire [31:0] add_out;
     wire        add_cout;
     wire [31:0] sub_out;
@@ -35,6 +38,9 @@ module alu(
 
     // NOT (only on A, ignoring B for this operation)
     assign not_out = ~A;
+
+    // NEG (Two's complement)
+    assign neg_out = ~A + 1;  
 
     // ADD
     adder_32bit u_adder(
@@ -83,6 +89,11 @@ module alu(
             4'b1000: result = {32'b0, srl_out};         // SRL : shift right
             4'b1001: result = {32'b0, rol_out};         // ROL : rotate left
             4'b1010: result = {32'b0, ror_out};         // ROR : rotate right
+            4'b1011: result = {32'b0, neg_out};         // NEG : negate 
+            4'b1100: result = {32'b0, sra_out};         // SHRA : Shift right artithmetic - used for signed numnbers
+
+
+
 
         default: result = 64'b0;
     endcase
