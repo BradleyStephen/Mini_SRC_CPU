@@ -71,7 +71,7 @@ module datapath_tb_and;
 				clear <= 0;
 				BusDataSelect = 5'b00000; GP_addr = 4'b0000; // initialize the signals
 				e_MAR <= 0; e_Z <= 0; e_PC <= 0; e_MDR <= 0; e_IR <= 0; e_Y <= 0; e_GP = 0; e_HI <= 0; e_LO <= 0;
-				incPC <= 0; MDR_read <= 0; alu_op <= 4'b0000;
+				incPC <= 0; MDR_read <= 0; alu_op <= 4'b0000; // AND opcode
 				Mdatain <= 32'h000000000;
 			end
 			Reg_load1a: begin
@@ -108,7 +108,7 @@ module datapath_tb_and;
 			end
 			T1: begin
 				BusDataSelect <= 5'b10011; e_PC <= 1; MDR_read <= 1; e_MDR <= 1;
-				Mdatain <= 32'h2A2B8000; // opcode for “and R4, R3, R7”
+				Mdatain <= 32'h2A2B8000; // opcode for “AND R4, R3, R7”
 				#20 e_PC <= 0; MDR_read <= 0; e_MDR <= 0;
 			end
 			T2: begin
@@ -120,7 +120,7 @@ module datapath_tb_and;
 				#20 e_Y <= 0;
 			end
 			T4: begin
-				BusDataSelect <= 5'b00111; alu_op = 4'b0000; e_Z <= 1;
+				BusDataSelect <= 5'b00111; alu_op = 4'b0000; e_Z <= 1; // AND opcode
 				#20 e_Z <= 0;
 			end
 			T5: begin

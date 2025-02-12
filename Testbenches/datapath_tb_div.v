@@ -105,7 +105,7 @@ module datapath_tb_div;
             end
             T1: begin
                 BusDataSelect <= 5'b10011; e_PC <= 1; MDR_read <= 1; e_MDR <= 1;
-                Mdatain <= 32'hXXXXXXXX; // Replace with actual MUL opcode if needed
+                Mdatain <= 32'h2A370000; // Replace with actual MUL opcode if needed
                 #20 e_PC <= 0; MDR_read <= 0; e_MDR <= 0;
             end
             T2: begin
