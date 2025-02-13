@@ -40,7 +40,7 @@ module alu(
     assign not_out = ~A;
 
     // NEG (Two's complement)
-    assign neg_out = ~A + 1;  
+    assign neg_out = ~A + 32'b1;  
 
     // ADD
     adder_32bit u_adder(

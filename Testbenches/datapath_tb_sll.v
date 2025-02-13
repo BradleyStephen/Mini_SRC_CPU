@@ -71,7 +71,7 @@ module datapath_tb_sll;
 				clear <= 0;
 				BusDataSelect = 5'b00000; GP_addr = 4'b0000; // Initialize the signals
 				e_MAR <= 0; e_Z <= 0; e_PC <= 0; e_MDR <= 0; e_IR <= 0; e_Y <= 0; e_GP = 0; e_HI <= 0; e_LO <= 0;
-				incPC <= 0; MDR_read <= 0; alu_op <= 4'b0111; // SLL opcode
+				incPC <= 0; MDR_read <= 0; alu_op <= 4'b0000; // SLL opcode
 				Mdatain <= 32'h000000000;
 			end
 			Reg_load1a: begin

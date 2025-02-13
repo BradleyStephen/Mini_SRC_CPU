@@ -1,5 +1,5 @@
 `timescale 1ns/10ps
-module datapath_tb_shra;
+module datapath_tb_sra;
 
 	reg clear, clock, incPC;
 	reg [3:0] GP_addr;

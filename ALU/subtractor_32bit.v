@@ -8,10 +8,10 @@ module subtractor_32bit(
     wire [31:0] B_twos_comp;   // ~B + 1
     wire        cout;
 
-    // 1) Invert B
+    // Invert B
     assign B_complement = ~B;
 
-    // 2) Add 1 to get two's complement of B
+    // Add 1 to get two's complement of B
     //    We can reuse the adder_32bit for B_complement + 1
     wire [31:0] temp_sum;
     wire        temp_cout;
@@ -25,7 +25,7 @@ module subtractor_32bit(
 
     assign B_twos_comp = temp_sum;  // final two's complement of B
 
-    // 3) A + (~B + 1) => A + B_twos_comp
+    //  A + (~B + 1) => A + B_twos_comp
     adder_32bit subtract_by_adding (
         .A(A),
         .B(B_twos_comp),
@@ -33,9 +33,6 @@ module subtractor_32bit(
         .COUT(cout)
     );
 
-    // Borrow out can be interpreted from the final carry in some designs.
-    // For a simple approach, we can define BORROW=~cout if we want to track
-    // negative or borrow conditions. This is somewhat design-dependent.
     assign BORROW = ~cout;
 
 endmodule
