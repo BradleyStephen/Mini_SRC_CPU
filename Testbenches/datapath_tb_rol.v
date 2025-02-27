@@ -85,7 +85,7 @@ module datapath_tb_rol;
 				#20 e_GP <= 0; // Initialize R3 with the value 0xA5A5A5A5
 			end
 			Reg_load2a: begin
-				Mdatain <= 32'h00000008; // Rotate left by 8 bits
+				Mdatain <= 32'h00000007; // Rotate left by 8 bits
 				MDR_read <= 1; e_MDR <= 1;
 				#20 MDR_read <= 0; e_MDR <= 0;
 			end
