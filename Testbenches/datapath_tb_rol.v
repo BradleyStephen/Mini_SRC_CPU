@@ -107,7 +107,7 @@ module datapath_tb_rol;
 				#20 e_MAR <= 0; incPC <= 0; e_Z <= 0;
 			end
 			T1: begin
-				BusDataSelect <= 5'b10011; e_PC <= 1; MDR_read <= 1; e_MDR <= 1;
+				BusDataSelect <= 5'b10011; MDR_read <= 1; e_MDR <= 1;
 				Mdatain <= 32'h2A338000; // Opcode for “ROL R4, R3, R7”
 				#20 e_PC <= 0; MDR_read <= 0; e_MDR <= 0;
 			end
