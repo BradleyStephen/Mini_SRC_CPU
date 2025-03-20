@@ -6,8 +6,6 @@ module datapath(
    input wire e_RA, e_CON_FF,
 	
 	input wire ram_read, ram_write,
-	
-	input wire [3:0] GP_addr,
     
 	input wire [31:0] Mdatain,
 	input wire MDR_read,
