@@ -114,9 +114,7 @@ set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id datapath_tb_
 set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id datapath_tb_rol
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME datapath_tb_rol -section_id datapath_tb_rol
 set_global_assignment -name VERILOG_FILE Testbenches/datapath_tb_ld.v
-set_global_assignment -name VERILOG_FILE outPort.v
 set_global_assignment -name VERILOG_FILE mux2to1_32.v
-set_global_assignment -name VERILOG_FILE inPort.v
 set_global_assignment -name VERILOG_FILE con_ff_logic.v
 set_global_assignment -name VERILOG_FILE Testbenches/datapath_tb_sra.v
 set_global_assignment -name VERILOG_FILE Testbenches/datapath_tb_sll.v
@@ -136,7 +134,6 @@ set_global_assignment -name VERILOG_FILE ALU/divider.v
 set_global_assignment -name VERILOG_FILE ALU/booth_multiplier.v
 set_global_assignment -name VERILOG_FILE Registers/program_counter.v
 set_global_assignment -name VERILOG_FILE bus.v
-set_global_assignment -name VERILOG_FILE datapath_tb.v
 set_global_assignment -name VERILOG_FILE Registers/register_64.v
 set_global_assignment -name VERILOG_FILE Registers/register_32.v
 set_global_assignment -name VERILOG_FILE Registers/register_file.v
