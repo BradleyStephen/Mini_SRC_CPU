@@ -93,8 +93,6 @@ module alu(
             4'b1100: result = {32'b0, sra_out};         // SHRA : Shift right artithmetic - used for signed numnbers
 
 
-
-
         default: result = 64'b0;
     endcase
 end

@@ -7,8 +7,6 @@ module datapath_tb_ld;
   // Register enable signals for PC, IR, Y, Z, HI, LO, MDR, MAR, GP
   reg e_PC, e_IR, e_Y, e_Z, e_HI, e_LO, e_MDR, e_MAR, e_GP, e_OutPort, e_InPort;
   
-  reg wire ram_read, ram_write;
-  
   // Memory and ALU signals
   reg [31:0] Mdatain;
   reg MDR_read;
@@ -37,8 +35,8 @@ module datapath_tb_ld;
   reg CON_enable;
   
   // State machine for ld control sequence (T0 to T7)
-  parameter T0 = 0, T1 = 1, T2 = 2, T3 = 3, T4 = 4, T5 = 5, T6 = 6, T7 = 7;
-  reg [3:0] state;
+  parameter Default = 0, T0 = 1, T1 = 2, T2 = 3, T3 = 4, T4 = 5, T5 = 6, T6 = 7, T7 = 8;
+  reg [3:0] Present_state = Default;
   
   // Instantiate the datapath (adjust port mapping as needed)
   datapath DUT (
@@ -77,7 +75,7 @@ module datapath_tb_ld;
 		clear = 1;
 	end
 	
-	always #10 begin
+	always #20 begin
 		clock = ~clock;
 	end
   
@@ -97,19 +95,8 @@ module datapath_tb_ld;
   
   // Drive control signals based on the current state
   always @(Present_state) begin
-    // Default: deassert all enables and control signals.
-    e_PC = 0; e_IR = 0; e_Y = 0; e_Z = 0; e_HI = 0; e_LO = 0; e_MDR = 0; e_MAR = 0; e_GP = 0;
-    incPC = 0;
-    MDR_read = 0;
-    BusDataSelect = 5'd0;
-    Gra = 0; Grb = 0; Grc = 0;
-    Rin_en = 0; Rout_en = 0; BAout = 0;
-    GP_addr = 4'd0;
-    Mdatain = 32'd0;
-    ram_read = 0; ram_write = 0;
-    imm_sel = 0;
     
-    case (state)
+    case (Present_state)
 		Default: begin
 			clear <= 0;
 			e_PC = 0; e_IR = 0; e_Y = 0; e_Z = 0; e_HI = 0; e_LO = 0; e_MDR = 0; e_MAR = 0; e_GP = 0;
@@ -117,8 +104,7 @@ module datapath_tb_ld;
 			 MDR_read = 0;
 			 BusDataSelect = 5'd0;
 			 Gra = 0; Grb = 0; Grc = 0;
-			 Rin_en = 0; Rout_en = 0; BAout = 0;
-			 GP_addr = 4'd0;
+			 e_Rin = 0; e_Rout = 0; BAout = 0;
 			 Mdatain = 32'd0;
 			 ram_read = 0; ram_write = 0;
 			 imm_sel = 0;
@@ -126,67 +112,54 @@ module datapath_tb_ld;
 	 
       // T0: PCout, MARin, IncPC, Zin
       T0: begin
-			e_PC <= 1; incPC <= 1; e_MAR <= 1; e_Z <= 1;
-			#20 e_PC <= 0; incPC <= 0; e_MAR <= 0; e_Z <= 0;
+		    BusDataSelect <= 5'b10100; incPC <= 0; e_MAR <= 1; e_Z <= 1;
+			  #40 e_PC <= 0; incPC <= 0; e_MAR <= 0; e_Z <= 0;
       end
       
-      // T1: Zlowout, PCin, Read, MDRin
+      // T1: Zlowout, PCin, Read, MDRinF
       T1: begin
-          BusDataSelect = 5'b10101; // Example code for MDR input
-          ram_read = 1;            // Activate RAM read
-          MDR_read = 1;
-          e_MDR = 1;
-          // Simulate RAM output: memory at address 0x54 holds 0x97
-          Mdatain = 32'h00000097;
+          BusDataSelect <= 5'b10011; ram_read <= 1; MDR_read <= 1; e_MDR <= 1;
+          #40 e_MDR <= 0;
       end
       
       // T2: MDRout, IRin
       T2: begin
-          BusDataSelect = 5'b10101; // Use MDR output to load IR
-          e_IR = 1;
+          BusDataSelect <= 5'b10101; e_IR <= 1;
+          #40 e_IR <= 0;
       end
       
       // T3: Grb, BAout, Yin
       T3: begin
-          BusDataSelect = 5'b00011; // Example code for a register output driving Y input
-          Grb = 1;
-          BAout = 1;  // Gates R0 to 0 if selected
-          e_Y = 1;
+          BusDataSelect <= 5'b00100; // Example code for a register output driving Y input
+          Grb <= 1; BAout <= 1; e_Y <= 1;
+          #40 e_Y <= 0; Grb <= 0; BAout <= 0;
       end
       
       // T4: Cout, ADD, Zin (effective address calculation)
       T4: begin
           // For ld, assert imm_sel so that the ALU multiplexer selects the sign-extended constant.
-          imm_sel = 1;
-          e_Z = 1;
-          ALU_op = 4'b0011;  // ADD operation
+          imm_sel <= 1; e_Z <= 1; ALU_op <= 4'b0011;  // ADD operation
+          #40 e_Z <= 0;
       end
       
       // T5: Zlowout, MARin (load computed effective address into MAR)
       T5: begin
-          BusDataSelect = 5'b10011; // Code for MAR input
-          e_MAR = 1;
+          BusDataSelect <= 5'b10011; e_MAR <= 1;
+          #40 e_MAR <= 0;
       end
       
       // T6: Read, MDRin (read memory data into MDR again)
       T6: begin
-          BusDataSelect = 5'b10101;
-          ram_read = 1;
-          MDR_read = 1;
-          e_MDR = 1;
-          Mdatain = 32'h00000097;  // Simulate RAM output again
+          BusDataSelect <= 5'b10101; ram_read <= 1; MDR_read <= 1; e_MDR <= 1;
+          #40 e_MDR <= 0;
       end
       
       // T7: MDRout, Gra, Rin (load register R4 with value from MDR)
       T7: begin
-          BusDataSelect = 5'b10101;
-          Gra = 1;
-          Rin_en = 1;
-          e_GP = 1;
-          GP_addr = 4'd4;  // Target register R4
+          BusDataSelect <= 5'b00100; Gra <= 1; e_Rin <= 1; e_GP <= 1;
+          #40 Gra <= 0; e_Rin <= 0; e_GP <= 0;
       end
       
-      default: ;
     endcase
   end
 

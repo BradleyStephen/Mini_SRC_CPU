@@ -77,7 +77,7 @@ module datapath(
 	program_counter PC(clear, clock, e_PC, incPC, BusData, BusIn_PC);
 	register_32 IR(clear, clock, e_IR, BusData, IRout);
 
-	selec_encode SE_Logic(IRout, Gra, Grb, Grc, e_Rin, e_Rout, BAout, SE_Rin, SE_Rout, C_sign_ext);
+	select_encode SE_Logic(IRout, Gra, Grb, Grc, e_Rin, e_Rout, BAout, SE_Rin, SE_Rout, C_sign_ext);
 	
 	// ALU and related registers
 	register_32 Y(clear, clock, e_Y, BusData, ALU_A);
@@ -91,7 +91,7 @@ module datapath(
         .out   (ALU_B)
     );
 
-	alu ALU(ALU_A, ALU_B, ALU_C, isZero);
+	alu ALU(ALU_A, ALU_B, ALU_op, ALU_C, isZero);
 
 	register_64 Z(clear, clock, e_Z, ALU_C, BusIn_Zlow, BusIn_Zhigh);
 	
@@ -138,7 +138,7 @@ module datapath(
 		.BusMuxIn_Zlow(BusIn_Zlow),
 		.BusMuxIn_PC(BusIn_PC),
 		.BusMuxIn_MDR(BusIn_MDR),
-		.BusMuxIn_InPort(InPort_out),
+		.BusMuxIn_InPort(BusIn_InPort), // changed this for naming convention
 		.BusMuxOut(BusData)
 	);
 

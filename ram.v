@@ -10,13 +10,17 @@ module ram(
 
     reg [31:0] memory [0:511];
     integer i;
+	 
+	initial begin
+      $readmemh("ram_init.hex", memory);
+    end
     
     always @(posedge clk or posedge clr) begin
         if (clr) begin
-            // Initialize all memory locations to 0 on reset.
-            for (i = 0; i < 512; i = i + 1) begin
-                memory[i] <= 32'b0;
-            end
+            // To preserve preloaded values, we comment out the clearing loop.
+            // for (i = 0; i < 512; i = i + 1) begin
+            //     memory[i] <= 32'b0;
+            // end
             data_out <= 32'b0;
         end else begin
             if (write) begin
