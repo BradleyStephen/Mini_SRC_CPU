@@ -11,12 +11,11 @@ module ld_case2_tb;
   // RAM control signals
   reg ram_read, ram_write;
   
-  // Memory and ALU signals (Mdatain is driven by your RAM module)
+  // Memory and ALU signals (Mdatain is driven by RAM)
   wire [31:0] Mdatain;
   reg MDR_read;
   
   reg [3:0] ALU_op;
-  
   reg [4:0] BusDataSelect;
   
   // Select and encode control signals
@@ -25,36 +24,35 @@ module ld_case2_tb;
   // ALU operand multiplexer control signal
   reg imm_sel;
   
-  // We define states for two instructions:
-  //  1) ldi R2, 0x78
-  //  2) ld R6, 0x63(R2)
-  // Each instruction uses T0–T2 for fetch, then T3+ for execution.
+  // FSM states for a two-instruction sequence:
+  // Instruction 0: ldi R2, 0x78
+  // Instruction 1: ld R6, 0x63(R2)
   reg [4:0] state;
   localparam 
-      // --- ldi R2, 0x78 sequence ---
-      LDI_T0      = 5'd0,  // T0: PCout, MARin, IncPC, Zin
+      // --- ldi R2, 0x78 sequence (fetched at PC=0) ---
+      LDI_T0      = 5'd0,   // T0: Fetch instruction from address 0 (ldi R2,0x78)
       LDI_T0_WAIT = 5'd1,
-      LDI_T1      = 5'd2,  // T1: read memory -> MDR
+      LDI_T1      = 5'd2,   // T1: Read memory to get instruction word into MDR
       LDI_T1_WAIT = 5'd3,
-      LDI_T2      = 5'd4,  // T2: MDRout -> IR
-      LDI_T3      = 5'd5,  // T3: we want 0 in Y, so we output R0 if needed
-      LDI_T4      = 5'd6,  // T4: ALU does (0 + 0x78) => Z
-      LDI_T5      = 5'd7,  // T5: Zlowout -> R2
+      LDI_T2      = 5'd4,   // T2: Transfer MDR -> IR
+      LDI_T3      = 5'd5,   // T3: For ldi, output R0 (zero) to Y
+      LDI_T4      = 5'd6,   // T4: ALU computes 0 + immediate (0x78) → Z
+      LDI_T5      = 5'd7,   // T5: Write Z to R2 (destination selected by Gra; IR[26:23] must equal 0010)
       LDI_DONE    = 5'd8,
-
-      // --- ld R6, 0x63(R2) sequence ---
-      LD_T0       = 5'd9,
+      
+      // --- ld R6, 0x63(R2) sequence (fetched at PC=1) ---
+      LD_T0       = 5'd9,   // T0: Fetch instruction from address 1 (ld R6,0x63(R2))
       LD_T0_WAIT  = 5'd10,
-      LD_T1       = 5'd11,
+      LD_T1       = 5'd11,  // T1: Read memory to get instruction word into MDR
       LD_T1_WAIT  = 5'd12,
-      LD_T2       = 5'd13,
-      LD_T3       = 5'd14, // Output R2 -> Y
-      LD_T4       = 5'd15, // ALU does (R2 + 0x63) => Z
-      LD_T5       = 5'd16, // Zlowout -> MAR
+      LD_T2       = 5'd13,  // T2: Transfer MDR -> IR
+      LD_T3       = 5'd14,  // T3: Output base register R2 onto Y
+      LD_T4       = 5'd15,  // T4: ALU computes R2 + immediate (0x63) → Z
+      LD_T5       = 5'd16,  // T5: Write Z to MAR (effective address)
       LD_T5_WAIT  = 5'd17,
-      LD_T6       = 5'd18, // read memory at MAR => MDR
+      LD_T6       = 5'd18,  // T6: Read memory at address in MAR into MDR
       LD_T6_WAIT  = 5'd19,
-      LD_T7       = 5'd20, // MDRout -> R6
+      LD_T7       = 5'd20,  // T7: Write MDR to destination register R6 (Gra selects R6; IR[26:23]=0110)
       LD_T7_WAIT  = 5'd21,
       DONE        = 5'd22;
 
@@ -91,7 +89,7 @@ module ld_case2_tb;
     .imm_sel(imm_sel)
   );
   
-  // Clock generation: 20 ns period
+  // Clock generation: 20 ns period.
   initial begin
     clock = 0;
     repeat (300) begin
@@ -99,9 +97,9 @@ module ld_case2_tb;
     end
   end
   
-  // Initial reset and control signal initialization
+  // Initial reset and signal initialization.
   initial begin
-    clear       = 1;     // Start in reset
+    clear       = 1;     // Assert reset initially.
     incPC       = 0;
     e_PC = 0; e_IR = 0; e_Y = 0; e_Z = 0;
     e_HI = 0; e_LO = 0; e_MDR = 0; e_MAR = 0; e_GP = 0;
@@ -111,191 +109,184 @@ module ld_case2_tb;
     MDR_read = 0;
     ALU_op = 4'b0000;
     BusDataSelect = 5'b00000;
-    Gra = 0; Grb = 0; Grc = 0; e_Rin = 0; e_Rout = 0; BAout = 0;
-    imm_sel = 0;    
+    Gra = 0; Grb = 0; Grc = 0;
+    e_Rin = 0; e_Rout = 0; BAout = 0;
+    imm_sel = 0;
     state = LDI_T0;
     
-    // Deassert reset after 50 ns
-    #50 clear = 0;
+    #50 clear = 0;  // Deassert reset after 50 ns.
   end
   
-  //-------------------------------------------------
-  // Combined FSM: first do "ldi R2, 0x78", then "ld R6, 0x63(R2)"
-  //-------------------------------------------------
+  // Combined FSM: first execute ldi R2,0x78, then execute ld R6,0x63(R2)
   always @(posedge clock) begin
     case(state)
-      //------------------------------------------------
-      // ldi R2, 0x78
-      //------------------------------------------------
+      // ---------------------------
+      // ldi R2, 0x78 sequence (instruction word at address 0 should be 0x42000078)
+      // ---------------------------
       LDI_T0: begin
-        // T0: PCout, MARin, IncPC, Zin
-        incPC <= 1;
-        e_MAR <= 1;
-        e_Z <= 1;
-        BusDataSelect <= 5'b10100; // PCout
-        state <= LDI_T0_WAIT;
+         // Fetch instruction from PC = 0.
+         incPC <= 1;
+         e_MAR <= 1;
+         BusDataSelect <= 5'b10100; // PCout
+         state <= LDI_T0_WAIT;
       end
       LDI_T0_WAIT: begin
-        incPC <= 0; e_MAR <= 0; e_Z <= 0;
-        BusDataSelect <= 5'b00000;
-        state <= LDI_T1;
+         incPC <= 0;
+         e_MAR <= 0;
+         BusDataSelect <= 5'b00000;
+         state <= LDI_T1;
       end
       LDI_T1: begin
-        // T1: Zlowout -> PCin, read memory
-        //e_PC <= 1;
-        ram_read <= 1;
-        BusDataSelect <= 5'b10011; // Zlowout
-        state <= LDI_T1_WAIT;
+         // Read memory at address in MAR (fetch the ldi instruction).
+         ram_read <= 1;
+         BusDataSelect <= 5'b10011; // Zlowout (used for memory read if needed)
+         state <= LDI_T1_WAIT;
       end
       LDI_T1_WAIT: begin
-        //e_PC <= 0;
-        // Now capture the instruction from RAM
-        MDR_read <= 1;
-        e_MDR <= 1;
-        BusDataSelect <= 5'b00000;
-        state <= LDI_T2;
+         ram_read <= 0;
+         MDR_read <= 1;
+         e_MDR <= 1;
+         BusDataSelect <= 5'b00000;
+         state <= LDI_T2;
       end
       LDI_T2: begin
-        // T2: MDRout -> IR
-        e_IR <= 1;
-        BusDataSelect <= 5'b10101; // MDRout
-        state <= LDI_T3;
+         // Transfer instruction from MDR to IR.
+         e_IR <= 1;
+         BusDataSelect <= 5'b10101; // MDRout
+         state <= LDI_T3;
       end
       LDI_T3: begin
-        // For ldi, we want 0 + immediate => Z
-        // So let's load 0 into Y from R0 (assuming IR[22..19]=0 => R0).
-        e_IR <= 0;
-        Grb <= 1;   // select Rb => IR[22..19] = 0 if opcode uses R0 as base
-        BAout <= 1; // force zero if R0 is selected
-        e_Y <= 1;
-        BusDataSelect <= 5'b00000; // R0 out
-        state <= LDI_T4;
+         e_IR <= 0;
+         // For ldi, we want to compute 0 + immediate.
+         // Output 0 from R0 onto Y.
+         Grb <= 1;   // Select Rb (assume R0 if IR[22..19] = 0)
+         BAout <= 1; // Force zero
+         e_Y <= 1;
+         BusDataSelect <= 5'b00000; // R0out
+         state <= LDI_T4;
       end
       LDI_T4: begin
-        // imm_sel=1 => ALU uses sign-extended immediate (0x78)
-        Grb <= 0; BAout <= 0; e_Y <= 0;
-        imm_sel <= 1;
-        ALU_op <= 4'b0011; // ADD
-        e_Z <= 1;
-        // No need to drive the bus for ALU_B; imm_sel=1 picks C_sign_ext
-        BusDataSelect <= 5'b00000; // bus doesn’t matter for ALU_B in this design
-        state <= LDI_T5;
+         Grb <= 0; BAout <= 0; e_Y <= 0;
+         // Use ALU: set imm_sel=1 so ALU_B = immediate (0x78).
+         imm_sel <= 1;
+         ALU_op <= 4'b0011; // ADD (0 + 0x78)
+         e_Z <= 1;          // Result goes to Z.
+         BusDataSelect <= 5'b00000;
+         state <= LDI_T5;
       end
       LDI_T5: begin
-        // Zlowout -> R2
-        e_Z <= 0;
-        imm_sel <= 0;
-        Gra <= 1;  // IR[26..23] = 2 => R2
-        e_Rin <= 1;
-        BusDataSelect <= 5'b10011; // Zlowout
-        state <= LDI_DONE;
+         e_Z <= 0; imm_sel <= 0;
+         // Write Z to register file using Gra.
+         // For ldi R2, IR[26..23] must be 0010 (R2).
+         Gra <= 1;
+         e_Rin <= 1;
+         BusDataSelect <= 5'b10011; // Zlowout
+         state <= LDI_DONE;
       end
       LDI_DONE: begin
-        Gra <= 0; e_Rin <= 0;
-        BusDataSelect <= 5'b00000;
-        // R2 now holds 0x78
-        state <= LD_T0; // proceed to second instruction
+         Gra <= 0; e_Rin <= 0;
+         BusDataSelect <= 5'b00000;
+         // Now R2 holds 0x78.
+         state <= LD_T0;
       end
       
-      //------------------------------------------------
-      // ld R6, 0x63(R2)
-      //------------------------------------------------
+      // ---------------------------
+      // ld R6, 0x63(R2) sequence (instruction word at address 1 should be 0x43100063)
+      // ---------------------------
       LD_T0: begin
-        // T0: PCout, MARin, IncPC, Zin
-        incPC <= 1;
-        e_MAR <= 1;
-        e_Z <= 1;
-        BusDataSelect <= 5'b10100; // PCout
-        state <= LD_T0_WAIT;
+         // Fetch instruction from PC = 1.
+         incPC <= 1;
+         e_MAR <= 1;
+         BusDataSelect <= 5'b10100; // PCout
+         state <= LD_T0_WAIT;
       end
       LD_T0_WAIT: begin
-        incPC <= 0; e_MAR <= 0; e_Z <= 0;
-        BusDataSelect <= 5'b00000;
-        state <= LD_T1;
+         incPC <= 0;
+         e_MAR <= 0;
+         BusDataSelect <= 5'b00000;
+         state <= LD_T1;
       end
       LD_T1: begin
-        //e_PC <= 1;
-        ram_read <= 1;
-        BusDataSelect <= 5'b10011; // Zlowout
-        state <= LD_T1_WAIT;
+         // Read memory at address in MAR (fetch ld instruction).
+         ram_read <= 1;
+         BusDataSelect <= 5'b10100; // Zlowout
+         state <= LD_T1_WAIT;
       end
       LD_T1_WAIT: begin
-        //e_PC <= 0;
-        MDR_read <= 1;
-        e_MDR <= 1;
-        BusDataSelect <= 5'b00000;
-        state <= LD_T2;
+         ram_read <= 0;
+         MDR_read <= 1;
+         e_MDR <= 1;
+         BusDataSelect <= 5'b00000;
+         state <= LD_T2;
       end
       LD_T2: begin
-        // MDRout -> IR
-        e_IR <= 1;
-        BusDataSelect <= 5'b10101; // MDRout
-        state <= LD_T3;
+         // Transfer instruction from MDR to IR.
+         e_IR <= 1;
+         BusDataSelect <= 5'b10101; // MDRout
+         state <= LD_T3;
       end
       LD_T3: begin
-        e_IR <= 0;
-        // For ld R6, 0x63(R2), output R2 onto bus => Y
-        Grb <= 1;  // IR[22..19] = 2 => R2
-        BAout <= 0; // not forcing zero
-        e_Y <= 1;
-        BusDataSelect <= 5'b00010; // R2out
-        state <= LD_T4;
+         e_IR <= 0;
+         // For ld R6, 0x63(R2), output the base register R2 onto Y.
+         Grb <= 1;   // Select Rb: IR[22..19] should be 0010 (R2)
+         BAout <= 0; // Do not force zero.
+         e_Y <= 1;
+         BusDataSelect <= 5'b00010; // R2out
+         state <= LD_T4;
       end
       LD_T4: begin
-        // ALU does R2 + 0x63 => Z
-        Grb <= 0; e_Y <= 0;
-        imm_sel <= 1;
-        ALU_op <= 4'b0011; // ADD
-        e_Z <= 1;
-        BusDataSelect <= 5'b00000; // bus not needed for ALU_B=immediate
-        state <= LD_T5;
+         Grb <= 0; e_Y <= 0;
+         // Use ALU: set imm_sel=1 to drive immediate (0x63) as ALU_B.
+         imm_sel <= 1;
+         ALU_op <= 4'b0011; // ADD: effective address = R2 + 0x63.
+         e_Z <= 1;
+         BusDataSelect <= 5'b00000;
+         state <= LD_T5;
       end
       LD_T5: begin
-        // Zlowout -> MAR
-        e_Z <= 0;
-        imm_sel <= 0;
-        e_MAR <= 1;
-        BusDataSelect <= 5'b10011; // Zlowout
-        state <= LD_T5_WAIT;
+         e_Z <= 0; imm_sel <= 0;
+         // Write effective address (from Z) into MAR.
+         e_MAR <= 1;
+         BusDataSelect <= 5'b10011; // Zlowout
+         state <= LD_T5_WAIT;
       end
       LD_T5_WAIT: begin
-        e_MAR <= 0;
-        BusDataSelect <= 5'b00000;
-        state <= LD_T6;
+         e_MAR <= 0;
+         BusDataSelect <= 5'b00000;
+         state <= LD_T6;
       end
       LD_T6: begin
-        // read memory at MAR
-        ram_read <= 1;
-        MDR_read <= 0;
-        e_MDR <= 0;
-        state <= LD_T6_WAIT;
+         // Read memory at effective address into MDR.
+         ram_read <= 1;
+         MDR_read <= 0;
+         e_MDR <= 0;
+         state <= LD_T6_WAIT;
       end
       LD_T6_WAIT: begin
-        ram_read <= 1;
-        MDR_read <= 1;
-        e_MDR <= 1;
-        state <= LD_T7;
+         ram_read <= 1;
+         MDR_read <= 1;
+         e_MDR <= 1;
+         state <= LD_T7;
       end
       LD_T7: begin
-        // MDRout -> R6
-        ram_read <= 0;
-        MDR_read <= 0;
-        e_MDR <= 0;
-        Gra <= 1;  // IR[26..23] = 6 => R6
-        e_Rin <= 1;
-        BusDataSelect <= 5'b10101; // MDRout
-        state <= LD_T7_WAIT;
+         // Write MDR (which should hold data 0x46 from memory at address 0xDB)
+         // into register R6. For ld R6, IR[26..23] must be 0110.
+         ram_read <= 0;
+         MDR_read <= 0;
+         e_MDR <= 0;
+         Gra <= 1;   // Select destination; IR[26..23]=0110 selects R6.
+         e_Rin <= 1;
+         BusDataSelect <= 5'b10101; // MDRout
+         state <= LD_T7_WAIT;
       end
       LD_T7_WAIT: begin
-        Gra <= 0; e_Rin <= 0;
-        BusDataSelect <= 5'b00000;
-        state <= DONE;
+         Gra <= 0; e_Rin <= 0;
+         BusDataSelect <= 5'b00000;
+         state <= DONE;
       end
-      
       DONE: begin
-        $finish;
+         $finish;
       end
-      
       default: state <= DONE;
     endcase
   end
