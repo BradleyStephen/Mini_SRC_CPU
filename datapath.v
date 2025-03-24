@@ -3,7 +3,7 @@ module datapath(
 
 	//register write enable signals
 	input wire e_PC, e_IR, e_Y, e_Z, e_HI, e_LO, e_MDR, e_MAR, e_GP, e_OutPort, e_InPort,
-   input wire e_RA, e_CON_FF,
+   	input wire e_RA, e_CON_FF,
 	
 	input wire ram_read, ram_write,
     
@@ -52,7 +52,7 @@ module datapath(
     register_file GP_reg (
         .clr   (clear),
         .clk   (clock),
-		  .BAout (BAout),
+		.BAout (BAout),
         .write (SE_Rin),
         .D     (BusData),
         .Q0    (BusIn_R0),
