@@ -1,0 +1,2 @@
+ld case 1 instrcution word: 42000054
+ld case 2 instrcution word: 43100063
