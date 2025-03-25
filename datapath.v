@@ -9,7 +9,7 @@ module datapath(
     
 	input wire [31:0] Mdatain,
 	input wire MDR_read,
-   
+    input wire [31:0] in_port_sim, // comment out when not doing incase testbech
 	input wire [3:0] ALU_op,
  
    // data signals
@@ -31,7 +31,7 @@ module datapath(
 	wire [31:0] IRout;
 	wire [31:0] Maddrout;
 
-	wire [31:0] in_port_data, out_port_data;
+	wire [31:0] in_port_data, out_port_data;// need this for in testbench
 	
 	// Bus signals for GP registers outputs
 	wire [31:0] BusData, BusIn_R0, BusIn_R1, BusIn_R2, BusIn_R3, BusIn_R4, BusIn_R5, BusIn_R6, BusIn_R7;
@@ -111,7 +111,7 @@ module datapath(
 
 	//I/O Ports
 	register_32 out_port(clear, clock, e_OutPort, BusData, out_port_data);
-	register_32 in_port(clear, clock, e_InPort, in_port_data, BusIn_InPort);
+	register_32 in_port(clear, clock, e_InPort, in_port_sim, BusIn_InPort);
 
 	//bus
 	bus Bus (

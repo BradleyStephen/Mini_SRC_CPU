@@ -14,3 +14,5 @@ andi/ori R5, R6, 0x95 intruction work is 0x42D0095. and like addi load a value i
 
 
 out case: 4300000A for the load on line 0, and i think 43000000 on line 1 to make sure its grabs form R6
+
+in case: 49B00000
