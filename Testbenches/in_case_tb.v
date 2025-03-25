@@ -37,7 +37,8 @@ module in_case_tb;
       T1_WAIT  = 4'd4,
       T2       = 4'd5,  // T2: Transfer MDR -> IR
       T3       = 4'd6,  // T3: Execute "in" operation: load input port value into register R3
-      DONE     = 4'd7;
+      T4       = 4'd7,  // T3: Execute "in" operation: load input port value into register R3
+      DONE     = 4'd8;
   
   // Instantiate the datapath (all submodules instantiated inside)
   datapath DUT (
@@ -149,11 +150,16 @@ module in_case_tb;
         state <= T3;
       end
       T3: begin
+        e_IR <= 0;
+        e_InPort <= 1;
+        state <= T4;
+      end
+      T4: begin
         // T3: Execute the in operation.
         // For "in R3", IR should indicate destination register R3 (bits [26:23] = 0011).
         // To load the input port value into R3, set BusDataSelect to 5'b10110 (which selects BusMuxIn_InPort),
-        // and assert Gra and e_Rin so that the register file loads the bus data.
-        e_IR <= 0;
+        // and assert Gra and e_Rin so that the register file loads the bus data. 
+        e_InPort <= 0;
         Gra <= 1;    // Select destination from IR (should be R3)
         e_Rin <= 1;  // Enable register file write
         BusDataSelect <= 5'b10110; // Select input port output onto bus.
