@@ -6,3 +6,11 @@ on line 219
 ldi case 3 instruction word: 42000054, nothing on other lines
 
 store case 1, dont need anyting leave blank awnser should be on 52 or 53
+
+addi case: ldi R6, 0x0A, we assume the instruction word is 0x4300000A For addi R5, R6, –7, we assume the instruction word is
+0x42B7FFF9
+
+andi/ori R5, R6, 0x95 intruction work is 0x42D0095. and like addi load a value into R6 with intruction word: is 0x4300000A loads 0A into R6
+
+
+out case: 4300000A for the load on line 0, and i think 43000000 on line 1 to make sure its grabs form R6
