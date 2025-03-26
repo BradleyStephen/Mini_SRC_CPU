@@ -25,3 +25,6 @@ branch case 3: load r1 with 00 48A80005, msb = 0 and not equal to zero. then int
 
 branch case 4: load r1 with 00 C8A80005 msb = 1. then intrct word: c2 value and offset of 27 to pc 48B80027
 
+jump: 4C280095
+4C280095
+

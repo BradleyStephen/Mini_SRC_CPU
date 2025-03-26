@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CEBA4F23C7
-set_global_assignment -name TOP_LEVEL_ENTITY brnz_tb
+set_global_assignment -name TOP_LEVEL_ENTITY jr_tb
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:52:58  JANUARY 26, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
@@ -153,6 +153,10 @@ set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME ldi_case4_tb -section_id 
 set_global_assignment -name EDA_TEST_BENCH_NAME brzr_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id brzr_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME brzr_tb -section_id brzr_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME brnz_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id brnz_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME brnz_tb -section_id brnz_tb
+set_global_assignment -name VERILOG_FILE Testbenches/jr_tb.v
 set_global_assignment -name VERILOG_FILE Testbenches/brnz_tb.v
 set_global_assignment -name VERILOG_FILE Testbenches/brzr_tb.v
 set_global_assignment -name VERILOG_FILE Testbenches/ldi_case4_tb.v
@@ -220,10 +224,11 @@ set_global_assignment -name EDA_TEST_BENCH_FILE Testbenches/out_case_tb.v -secti
 set_global_assignment -name EDA_TEST_BENCH_FILE Testbenches/in_case_tb.v -section_id in_case_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE Testbenches/ldi_case4_tb.v -section_id ldi_case4_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE Testbenches/brzr_tb.v -section_id brzr_tb
-set_global_assignment -name EDA_TEST_BENCH_NAME brnz_tb -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id brnz_tb
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME brnz_tb -section_id brnz_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE Testbenches/brnz_tb.v -section_id brnz_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME jr_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id jr_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME jr_tb -section_id jr_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE Testbenches/jr_tb.v -section_id jr_tb
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
