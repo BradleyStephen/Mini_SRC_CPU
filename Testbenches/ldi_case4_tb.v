@@ -1,5 +1,5 @@
 `timescale 1ns/10ps
-module ld_case2_tb;
+module ldi_case4_tb;
 
   // Clock and reset signals
   reg clear, clock, incPC;
@@ -50,13 +50,8 @@ module ld_case2_tb;
       LD_T4       = 5'd15,  // T4: ALU computes R2 + immediate (0x63) → Z
       LD_T5       = 5'd16,  // T5: Write Z to MAR (effective address = 0x78+0x63 = 0xDB)
       LD_T5_WAIT  = 5'd17,
-      LD_T6       = 5'd18,  // T6: Read memory at MAR into MDR
-      LD_T6_WAIT  = 5'd19,
-      LD_T7       = 5'd20,  // T7: Write MDR to R6 (Gra selects R6; IR[26..23] = 0110)
-      LD_T7_WAIT  = 5'd21,
-      LD_T8       = 5'd22,
-      LD_T8_WAIT  = 5'd23,
-      DONE        = 5'd24;
+      
+      DONE        = 5'd18;
       
   // Instantiate the datapath
   datapath DUT (
@@ -256,49 +251,21 @@ module ld_case2_tb;
          state <= LD_T5;
       end
       
-      LD_T5: begin
-         e_Z <= 0; imm_sel <= 0;
-         // Write the ALU result (should be 0x78 + 0x63 = 0xDB) into MAR.
-         e_MAR <= 1;
-         BusDataSelect <= 5'b10011; // Zlowout
+     LD_T5: begin
+         e_Z <= 0; 
+         imm_sel <= 0;
+         // Directly write the ALU result (0xDB) from Zlow to R6.
+         Gra <= 1;       // IR field should select R6 (e.g. 0110)
+         e_Rin <= 1;
+         BusDataSelect <= 5'b10011; // Zlowout: effective address on the bus.
          state <= LD_T5_WAIT;
       end
       
       LD_T5_WAIT: begin
-         e_MAR <= 0;
+         Gra <= 0;
+         e_Rin <= 0;
          BusDataSelect <= 5'b00000;
-         state <= LD_T6;
-      end
-      
-      LD_T6: begin
-         // Initiate a memory read at effective address 0xDB.
-         ram_read <= 1;
-         BusDataSelect <= 5'b00000;
-         state <= LD_T6_WAIT;
-      end
-      
-      LD_T6_WAIT: begin
-         // Deassert read; latch memory data into MDR.
-         ram_read <= 0;
-         MDR_read <= 1;
-         e_MDR <= 1;
-         state <= LD_T7;
-      end
-      
-      LD_T7: begin
-         // Transfer MDR (which should now contain 0x46) to R6.
-         MDR_read <= 0;
-         e_MDR <= 0;
-         Gra <= 1;    // IR[26..23] should be 0110 to select R6.
-         e_Rin <= 1;
-         BusDataSelect <= 5'b10101; // MDRout
-         state <= LD_T7_WAIT;
-      end
-      
-      LD_T7_WAIT: begin
-         Gra <= 0; e_Rin <= 0;
-         BusDataSelect <= 5'b00000;
-         state <= DONE;
+         state <= DONE;  // End of sequence.
       end
       DONE: begin
          $finish;

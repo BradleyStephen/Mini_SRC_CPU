@@ -173,7 +173,7 @@ module datapath_tb_ld;
          // T4: Cout, ADD, Zin.
          Grb <= 0; BAout <= 0; e_Y <= 0;  // Deassert T3 signals
          imm_sel <= 1;       // Select the constant (sign-extended) as ALU_B input (Cout)
-         ALU_op <= 4'b0011;  // Assume 0000 is the ADD operation
+         ALU_op <= 4'b0011;  // Assume 0011 is the ADD operation
          e_Z <= 1;           // Load Z with the ALU result
          BusDataSelect <= 5'b01100; // Arbitrary code for constant output (Cout)
          state <= T5;

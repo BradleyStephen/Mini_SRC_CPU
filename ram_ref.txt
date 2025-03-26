@@ -1,7 +1,7 @@
 ld case 1 instrcution word: 42000054, put 00000097 on line 85
 
 ld case 2 instrcution word: 41000078 for ldi into r2, 43100063 for loading in r6 with offset of 43: R6, 0x63, put put 00000046
-on line 219
+on line 218, 219, and 202 lol we taking no chances 
 
 ldi case 3 instruction word: 42000054, nothing on other lines
 
