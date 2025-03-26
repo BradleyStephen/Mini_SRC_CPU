@@ -138,7 +138,8 @@ module datapath(
 		.BusMuxIn_Zlow(BusIn_Zlow),
 		.BusMuxIn_PC(BusIn_PC),
 		.BusMuxIn_MDR(BusIn_MDR),
-		.BusMuxIn_InPort(BusIn_InPort), // changed this for naming convention
+		.BusMuxIn_InPort(BusIn_InPort),
+		.BusMuxIn_Imm(C_sign_ext), // changed this for naming convention
 		.BusMuxOut(BusData)
 	);
 

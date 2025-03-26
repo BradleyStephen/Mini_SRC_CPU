@@ -16,3 +16,12 @@ andi/ori R5, R6, 0x95 intruction work is 0x42D0095. and like addi load a value i
 out case: 4300000A for the load on line 0, and i think 43000000 on line 1 to make sure its grabs form R6
 
 in case: 49B00000
+
+branch case 1: load r1 with 00 48A80000. then intrct word: c2 value and offset of 27 to pc 48A00027
+
+branch case 2: load r1 with 05 48A80005 correct c2 value and offset of 27 to pc 48A80027
+
+branch case 3: load r1 with 00 48A80005, msb = 0 and not equal to zero. then intrct word: c2 value and offset of 27 to pc 48B00027
+
+branch case 4: load r1 with 00 C8A80005 msb = 1. then intrct word: c2 value and offset of 27 to pc 48B80027
+
