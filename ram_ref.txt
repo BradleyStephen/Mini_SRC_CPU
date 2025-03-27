@@ -28,7 +28,10 @@ branch case 4: load r1 with 00 C8A80005 msb = 1. then intrct word: c2 value and 
 
 jump jr: 4C280095
 
-jal: 4AA80095
+jal: 4AC00095
+4AC00095
+
+mfhi: C9800000
 
 
 
