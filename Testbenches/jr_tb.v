@@ -122,13 +122,11 @@ module jr_tb;
           // ldi R8, 0x95 sequence (instruction word at address 0 should be 0x42000078)
           // ---------------------------
           LDI_T0: begin
-             incPC <= 1;
              e_MAR <= 1;
              BusDataSelect <= 5'b10100; // PCout
              state <= LDI_T0_WAIT;
           end
           LDI_T0_WAIT: begin
-             incPC <= 0;
              e_MAR <= 0;
              BusDataSelect <= 5'b00000;
              state <= LDI_T1;
@@ -193,14 +191,12 @@ module jr_tb;
           // ----------------------------
           JR_FETCH_T0: begin
             // Fetch JR instruction from PC (which is 1)
-            incPC <= 1;        // Increment PC (will become 2 after fetch)
-            e_MAR <= 0;        // Load PC value into MAR
+       // Increment PC (will become 2 after fetch)
+            e_MAR <= 1;        // Load PC value into MAR
             BusDataSelect <= 5'b10100; // PCout
             state <= JR_FETCH_T0_WAIT;
           end
           JR_FETCH_T0_WAIT: begin
-            incPC <= 0;
-            e_MAR <= 1;
             BusDataSelect <= 5'b00000;
             state <= JR_FETCH_T1;
           end
@@ -258,7 +254,7 @@ module jr_tb;
             state <= DONE;  // End of JR sequence (or transition to the next fetch cycle)
           end
           DONE: begin
-            $finish;
+          BusDataSelect <= 5'b00000;
           end
 
       default: state <= DONE;

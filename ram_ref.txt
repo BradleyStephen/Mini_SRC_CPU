@@ -5,7 +5,7 @@ on line 218, 219, and 202 lol we taking no chances
 
 ldi case 3 instruction word: 42000054, nothing on other lines
 
-store case 1, dont need anyting leave blank awnser should be on 52 or 53
+store case 1,  49b000b6 49b00034
 
 addi case: ldi R6, 0x0A, we assume the instruction word is 0x4300000A For addi R5, R6, –7, we assume the instruction word is
 0x42B7FFF9
@@ -26,5 +26,6 @@ branch case 3: load r1 with 00 48A80005, msb = 0 and not equal to zero. then int
 branch case 4: load r1 with 00 C8A80005 msb = 1. then intrct word: c2 value and offset of 27 to pc 48B80027
 
 jump: 4C280095
-4C280095
+
+
 
