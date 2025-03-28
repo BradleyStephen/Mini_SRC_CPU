@@ -52,9 +52,8 @@ module brpl_tb;
       BR_T4      = 5'd16,  // T4: PCout, Yin (load PC into Y)
       BR_T5      = 5'd17,  // T5: Cout, ADD, Zin (compute branch target = PC + 1 + sign-extended offset)
       BR_T6      = 5'd18,  // T6: Zlowout, CON -> PCin (load branch target into PC if branch taken)
-		  BR_T7		  = 5'd19,
-      BR_T8 	  = 5'd20,	
-      DONE       = 5'd21;
+		BR_T7		  = 5'd19,
+      DONE       = 5'd20;
       
   // Instantiate the datapath
   datapath DUT (
@@ -281,18 +280,10 @@ module brpl_tb;
           end
 		    BR_T7: begin
 		    	e_PC <= 0;
-                incPC <= 1;    // Load computed branch target into PC
-		    	BusDataSelect <= 5'b00000;
-		    	state <= BR_T8;
-		    end
-        BR_T8: begin
-		    	e_PC <= 0;
-          incPC <= 0;    // Load computed branch target into PC
 		    	BusDataSelect <= 5'b00000;
 		    	state <= DONE;
 		    end
-
-
+  
         DONE: begin
           // Deassert all signals and finish simulation
           //incPC <= 0;

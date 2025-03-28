@@ -196,11 +196,13 @@ module jal_tb;
           //  JR Instruction Fetch Sequence
           // ----------------------------
           JR_FETCH_T0: begin
+            incPC <= 1;
             e_MAR <= 1;        // Load PC value into MAR
             BusDataSelect <= 5'b10100; // PCout
             state <= JR_FETCH_T0_WAIT;
           end
           JR_FETCH_T0_WAIT: begin
+            incPC <= 0;
             BusDataSelect <= 5'b00000;
             state <= JR_FETCH_T1;
           end
@@ -239,7 +241,7 @@ module jal_tb;
             e_Y <= 0;
             Grb <= 1;
             e_Rin <= 1;
-            BusDataSelect <= 5'b01000;
+            BusDataSelect <= 5'b10100;
             state <= PRE_T2;
           end
           PRE_T2: begin
@@ -269,8 +271,7 @@ module jal_tb;
             Gra <= 0;
             e_Rout <= 0;
             // Now assert PC load.
-            e_PC <= 1;      // PC <- Bus (which holds R8)
-            // (Keep BusDataSelect = 5'b01000 during this cycle to maintain the bus value.)
+            e_PC <= 1;      
             state <= JR_T1;
           end
           JR_T1: begin

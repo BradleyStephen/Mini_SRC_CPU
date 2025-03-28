@@ -5,13 +5,15 @@ on line 218, 219, and 202 lol we taking no chances
 
 ldi case 3 instruction word: 42000054, nothing on other lines
 
+ldi case 4: 41000078 43100063
+
 store case 1,  49b000b6 49b00034, put 25 on line 53
 store case 2,  49b000b6 49b00034, put 19 on line 234 or 233
 
 addi case: ldi R6, 0x0A, we assume the instruction word is 0x4300000A For addi R5, R6, –7, we assume the instruction word is
 0x42B7FFF9
 
-andi/ori R5, R6, 0x95 intruction work is 0x42D0095. and like addi load a value into R6 with intruction word: is 0x4300000A loads 0A into R6
+andi/ori R5, R6, 0x95 intruction work is 0x42D0095. and like addi load a value into R6 with intruction word: is 0x4300000B loads 0B into R6
 
 
 out case: 4300000A for the load on line 0, and i think 43000000 on line 1 to make sure its grabs form R6
@@ -22,9 +24,9 @@ branch case 1: load r1 with 00 48A80000. then intrct word: c2 value and offset o
 
 branch case 2: load r1 with 05 48A80005 correct c2 value and offset of 27 to pc 48A80027
 
-branch case 3: load r1 with 00 48A80005, msb = 0 and not equal to zero. then intrct word: c2 value and offset of 27 to pc 48B00027
+branch case 3: load r1 with 05 48A80005, msb = 0 and not equal to zero. then intrct word: c2 value and offset of 27 to pc 48B00027
 
-branch case 4: load r1 with 00 C8A80005 msb = 1. then intrct word: c2 value and offset of 27 to pc 48B80027
+branch case 4: load r1 with FB C8A8FFFB msb = 1. then intrct word: c2 value and offset of 27 to pc 48B80027
 
 jump jr: 4C280095
 
@@ -32,6 +34,8 @@ jal: 4AC00095
 4AC00095
 
 mfhi: C9800000
+
+mflo: C9000000
 
 
 
