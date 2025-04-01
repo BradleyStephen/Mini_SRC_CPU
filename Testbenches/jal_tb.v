@@ -40,19 +40,19 @@ module jal_tb;
       LDI_T5      = 5'd7,   // T5: Write Z to R2 (Gra selects R2, IR[26..23] = 0010)
       LDI_DONE    = 5'd8,
       
-      JR_FETCH_T0       = 5'd9,  
-      JR_FETCH_T0_WAIT      = 5'd10,  
-      JR_FETCH_T1      = 5'd11,  
-      JR_FETCH_T1_WAIT      = 5'd12,  
-      JR_FETCH_T2      = 5'd13,  
+      JAL_FETCH_T0       = 5'd9,  
+      JAL_FETCH_T0_WAIT      = 5'd10,  
+      JAL_FETCH_T1      = 5'd11,  
+      JAL_FETCH_T1_WAIT      = 5'd12,  
+      JAL_FETCH_T2      = 5'd13,  
 
       PRE     = 5'd14,  
       PRE_T1      = 5'd15,  
       PRE_T2     = 5'd16,  
 
-      JR_TO      = 5'd17,  
-      JR_T0      = 5'd18,  
-      JR_T1      = 5'd19,  
+      JAL_TO      = 5'd17,  
+      JAL_T0      = 5'd18,  
+      JAL_T1      = 5'd19,  
     
       DONE       = 5'd20;
       
@@ -189,39 +189,39 @@ module jal_tb;
              Gra <= 0; e_Rin <= 0;
              BusDataSelect <= 5'b01000;
              // R2 now holds 0x05.
-             state <= JR_FETCH_T0;
+             state <= JAL_FETCH_T0;
           end
           
       
-          //  JR Instruction Fetch Sequence
+          //  JAL Instruction Fetch Sequence
           // ----------------------------
-          JR_FETCH_T0: begin
+          JAL_FETCH_T0: begin
             incPC <= 1;
             e_MAR <= 1;        // Load PC value into MAR
             BusDataSelect <= 5'b10100; // PCout
-            state <= JR_FETCH_T0_WAIT;
+            state <= JAL_FETCH_T0_WAIT;
           end
-          JR_FETCH_T0_WAIT: begin
+          JAL_FETCH_T0_WAIT: begin
             incPC <= 0;
             BusDataSelect <= 5'b00000;
-            state <= JR_FETCH_T1;
+            state <= JAL_FETCH_T1;
           end
-          JR_FETCH_T1: begin
+          JAL_FETCH_T1: begin
             // Initiate memory read at MAR (address 1)
             e_MAR <= 0;
             ram_read <= 1;
             BusDataSelect <= 5'b10011; // Zlowout (if used to drive MAR data)
-            state <= JR_FETCH_T1_WAIT;
+            state <= JAL_FETCH_T1_WAIT;
           end
-          JR_FETCH_T1_WAIT: begin
+          JAL_FETCH_T1_WAIT: begin
             // Latch data from RAM into MDR
             MDR_read <= 1;
             ram_read <= 0;
             e_MDR <= 1;
             BusDataSelect <= 5'b00000;
-            state <= JR_FETCH_T2;
+            state <= JAL_FETCH_T2;
           end
-          JR_FETCH_T2: begin
+          JAL_FETCH_T2: begin
             // Transfer instruction from MDR to IR
             MDR_read <= 0;
             e_MDR <= 0;
@@ -248,37 +248,37 @@ module jal_tb;
             Gra <= 0;
             e_Rin <= 0;
             BusDataSelect <= 5'b00000;
-            state <= JR_TO;
+            state <= JAL_TO;
           end
           
         
           // ----------------------------
-          //  JR Execution Sequence (Jump to R5)
+          //  JAL Execution Sequence (Jump to R5)
           // ----------------------------
-          JR_TO: begin
-            // Now the JR instruction is in IR. For a JR, IR[26:23] should select Ra.
+          JAL_TO: begin
+            // Now the JAL instruction is in IR. For a JAL, IR[26:23] should select Ra.
             // In this case, we want to jump to R8.
             // Drive R8 onto the bus.
             e_IR <=0;
             Gra <= 1;        // Decode IR field to select register (should yield 5 for R5)
             e_Rout <= 1;     // Enable R5 output
             BusDataSelect <= 5'b00101; // From your bus.v mapping, 5'b01000 selects R5
-            state <= JR_T0;
+            state <= JAL_T0;
           end
-          JR_T0: begin
+          JAL_T0: begin
             // With R8 on the bus, load it into the PC.
             // First, deassert the signals driving R8.
             Gra <= 0;
             e_Rout <= 0;
             // Now assert PC load.
             e_PC <= 1;      
-            state <= JR_T1;
+            state <= JAL_T1;
           end
-          JR_T1: begin
+          JAL_T1: begin
             // Finalize the jump.
             e_PC <= 0;      // Deassert PC load
             BusDataSelect <= 5'b00000; // Clear bus selection
-            state <= DONE;  // End of JR sequence (or transition to the next fetch cycle)
+            state <= DONE;  // End of JAL sequence (or transition to the next fetch cycle)
           end
           DONE: begin
           BusDataSelect <= 5'b00000;

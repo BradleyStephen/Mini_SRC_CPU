@@ -43,7 +43,7 @@ module select_encode(
         
         // Sign-extend the constant.
         // Replicates IR[18] 14 times and concatenates with IR[17:0] to form a 32-bit value.
-        C_sign_ext = {{16{IR[15]}}, IR[15:0]};//changed 18 to 17
+        C_sign_ext = {{13{IR[18]}}, IR[18:0]}; //changed old was assign C_sign_ext = { {16{IR[15]}}, IR[15:0] }
     end
 
 endmodule
