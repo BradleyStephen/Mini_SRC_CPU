@@ -4,6 +4,9 @@ module bus(
 	input [31:0] BusMuxIn_R8, BusMuxIn_R9, BusMuxIn_R10, BusMuxIn_R11, BusMuxIn_R12, BusMuxIn_R13, BusMuxIn_R14, BusMuxIn_R15,
 	input [31:0] BusMuxIn_HI, BusMuxIn_LO, BusMuxIn_Zhigh, BusMuxIn_Zlow, BusMuxIn_PC, BusMuxIn_MDR,
 	
+   input  wire [31:0] BusMuxIn_InPort, // new for inport
+   input [31:0] BusMuxIn_Imm,   // new for c sign exnt
+
 	output reg [31:0] BusMuxOut
 );
 
@@ -31,6 +34,8 @@ module bus(
             5'b10011: BusMuxOut <= BusMuxIn_Zlow;
             5'b10100: BusMuxOut <= BusMuxIn_PC;
             5'b10101: BusMuxOut <= BusMuxIn_MDR;
+            5'b10110: BusMuxOut <= BusMuxIn_InPort;
+            5'b11000: BusMuxOut <= BusMuxIn_Imm; // added for c sign extn
             default: BusMuxOut <= 32'b0;
 			endcase
 		end

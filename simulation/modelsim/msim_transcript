@@ -1,0 +1,202 @@
+# Reading C:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# do Mini_SRC_CPU_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v 
+# -- Compiling module datapath_tb_rol
+# ** Warning: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v(75): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# 
+# Top level modules:
+# 	datapath_tb_rol
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/subtractor_32bit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/subtractor_32bit.v 
+# -- Compiling module subtractor_32bit
+# 
+# Top level modules:
+# 	subtractor_32bit
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/full_adder.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/full_adder.v 
+# -- Compiling module full_adder
+# 
+# Top level modules:
+# 	full_adder
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v 
+# -- Compiling module divider
+# 
+# Top level modules:
+# 	divider
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v 
+# -- Compiling module booth_multiplier
+# 
+# Top level modules:
+# 	booth_multiplier
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v 
+# -- Compiling module program_counter
+# 
+# Top level modules:
+# 	program_counter
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v 
+# -- Compiling module bus
+# 
+# Top level modules:
+# 	bus
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v 
+# -- Compiling module register_64
+# 
+# Top level modules:
+# 	register_64
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v 
+# -- Compiling module register_32
+# 
+# Top level modules:
+# 	register_32
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:11 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v 
+# -- Compiling module register_file
+# 
+# Top level modules:
+# 	register_file
+# End time: 22:56:11 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:12 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v 
+# -- Compiling module datapath
+# 
+# Top level modules:
+# 	datapath
+# End time: 22:56:12 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:12 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v 
+# -- Compiling module mdr
+# 
+# Top level modules:
+# 	mdr
+# End time: 22:56:12 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:12 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v 
+# -- Compiling module alu
+# 
+# Top level modules:
+# 	alu
+# End time: 22:56:12 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:12 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v 
+# -- Compiling module adder_32bit
+# 
+# Top level modules:
+# 	adder_32bit
+# End time: 22:56:12 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches {D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:56:12 on Feb 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches" D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v 
+# -- Compiling module datapath_tb_rol
+# ** Warning: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v(75): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# 
+# Top level modules:
+# 	datapath_tb_rol
+# End time: 22:56:12 on Feb 27,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  datapath_tb_rol
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" datapath_tb_rol 
+# Start time: 22:56:12 on Feb 27,2025
+# Loading work.datapath_tb_rol
+# Loading work.datapath
+# Loading work.register_file
+# Loading work.program_counter
+# Loading work.register_32
+# Loading work.alu
+# Loading work.adder_32bit
+# Loading work.subtractor_32bit
+# Loading work.booth_multiplier
+# Loading work.divider
+# Loading work.register_64
+# Loading work.mdr
+# Loading work.bus
+# Loading work.full_adder
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run 500 ns
+add wave -position end  sim:/datapath_tb_rol/DUT/GP_reg/Q3
+add wave -position end  sim:/datapath_tb_rol/DUT/GP_reg/Q4
+add wave -position end  sim:/datapath_tb_rol/DUT/GP_reg/Q7
+add wave -position 5  sim:/datapath_tb_rol/DUT/PC/Q
+add wave -position 7  sim:/datapath_tb_rol/DUT/IR/Q
+add wave -position end  sim:/datapath_tb_rol/DUT/bus/BusMuxOut
+add wave -position end  sim:/datapath_tb_rol/DUT/Z/Q_low
+add wave -position end  sim:/datapath_tb_rol/DUT/Z/Q_high
+restart
+run 500ns
+# End time: 23:07:06 on Feb 27,2025, Elapsed time: 0:10:54
+# Errors: 0, Warnings: 0
