@@ -7,7 +7,7 @@ module datapath(
 	
 	input wire ram_read, ram_write,
     
-	input wire [31:0] Mdatain,
+
 	input wire MDR_read,
     input wire [31:0] in_port_sim, // comment out when not doing incase testbech
 	input wire [3:0] ALU_op,
@@ -20,23 +20,31 @@ module datapath(
     
 	// control signal to select ALU B operand
 	// When imm_sel is high, use the immediate constant; when low, use the register value.
-	input wire imm_sel
+	input wire imm_sel,
+
+	output wire [31:0] IRout,
+	output wire [31:0] BusData,
+	output wire [31:0] BusIn_PC
+
 );
+
+	// Declare an internal wire for the memory output:
+    wire [31:0] mdata_out;
 
 	wire [31:0] ALU_A;
 	wire [31:0] ALU_B;
 	wire [63:0] ALU_C;
 	wire isZero;
 
-	wire [31:0] IRout;
+
 	wire [31:0] Maddrout;
 
 	wire [31:0] in_port_data, out_port_data;// need this for in testbench
 	
 	// Bus signals for GP registers outputs
-	wire [31:0] BusData, BusIn_R0, BusIn_R1, BusIn_R2, BusIn_R3, BusIn_R4, BusIn_R5, BusIn_R6, BusIn_R7;
+	wire [31:0] BusIn_R0, BusIn_R1, BusIn_R2, BusIn_R3, BusIn_R4, BusIn_R5, BusIn_R6, BusIn_R7;
 	wire [31:0] BusIn_R8, BusIn_R9, BusIn_R10, BusIn_R11, BusIn_R12, BusIn_R13, BusIn_R14, BusIn_R15;
-	wire [31:0] BusIn_HI, BusIn_LO, BusIn_Zhigh, BusIn_Zlow, BusIn_PC, BusIn_MDR, BusIn_InPort;
+	wire [31:0] BusIn_HI, BusIn_LO, BusIn_Zhigh, BusIn_Zlow, BusIn_MDR, BusIn_InPort;
 	
 	
 	// Wires for select_encode outputs
@@ -100,10 +108,10 @@ module datapath(
 
 	//Memory "Gateway"
 	register_32 MAR(clear, clock, e_MAR, BusData, Maddrout);
-	mdr MDR(clear, clock, e_MDR, MDR_read, BusData, Mdatain, BusIn_MDR);
+	mdr MDR(clear, clock, e_MDR, MDR_read, BusData, mdata_out, BusIn_MDR);
 
 	//RAM module
-	ram RAM (clear, clock, ram_read, ram_write, Maddrout[8:0], BusData, Mdatain);
+	ram RAM (clear, clock, ram_read, ram_write, Maddrout[8:0], BusData, mdata_out);
 
 	//CON FF Logic
 	register_32 RA_reg(clear, clock, e_RA, BusData, Ra_value);
