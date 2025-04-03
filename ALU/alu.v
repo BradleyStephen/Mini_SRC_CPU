@@ -37,10 +37,10 @@ module alu(
     assign or_out  = A | B;
 
     // NOT (only on A, ignoring B for this operation)
-    assign not_out = ~A;
+    assign not_out = ~B;
 
     // NEG (Two's complement)
-    assign neg_out = ~A + 32'b1;  
+    assign neg_out = ~B + 32'b1;  
 
     // ADD
     adder_32bit u_adder(

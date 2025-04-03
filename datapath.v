@@ -147,7 +147,10 @@ module datapath(
 		.BusMuxIn_MDR(BusIn_MDR),
 		.BusMuxIn_InPort(BusIn_InPort),
 		.BusMuxIn_Imm(C_sign_ext), // changed this for naming convention
-		.BusMuxOut(BusData)
+		.BusMuxOut(BusData),
+		.Rout(SE_Rout),
+		.e_Rout(e_Rout),
+		.BAout(BAout)
 	);
 
 endmodule

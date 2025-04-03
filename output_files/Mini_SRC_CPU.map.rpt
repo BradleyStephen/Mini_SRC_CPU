@@ -1,6 +1,6 @@
 Analysis & Elaboration report for Mini_SRC_CPU
-Thu Apr 03 08:03:57 2025
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Thu Apr 03 11:50:33 2025
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
 ---------------------
@@ -11,15 +11,15 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   3. Parallel Compilation
   4. Parameter Settings for User Entity Instance: minisrc:uut|control_unit:CU
   5. Analysis & Elaboration Settings
-  6. Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:out_port"
-  7. Port Connectivity Checks: "minisrc:uut|datapath:DP|con_ff_logic:CON_FF"
-  8. Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:MAR"
-  9. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub|adder_32bit:add_one"
- 10. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub"
- 11. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst"
- 12. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder"
- 13. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU"
- 14. Port Connectivity Checks: "minisrc:uut|datapath:DP|select_encode:SE_Logic"
+  6. Port Connectivity Checks: "minisrc:uut|datapath:DP|bus:Bus"
+  7. Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:out_port"
+  8. Port Connectivity Checks: "minisrc:uut|datapath:DP|con_ff_logic:CON_FF"
+  9. Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:MAR"
+ 10. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub|adder_32bit:add_one"
+ 11. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub"
+ 12. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst"
+ 13. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder"
+ 14. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU"
  15. Port Connectivity Checks: "minisrc:uut|datapath:DP"
  16. Port Connectivity Checks: "minisrc:uut|control_unit:CU"
  17. Port Connectivity Checks: "minisrc:uut"
@@ -47,22 +47,22 @@ refer to the applicable agreement for further details.
 
 
 
-+-----------------------------------------------------------------------------+
-; Analysis & Elaboration Summary                                              ;
-+-------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status ; Successful - Thu Apr 03 08:03:57 2025       ;
-; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name                 ; Mini_SRC_CPU                                ;
-; Top-level Entity Name         ; minisrc_tb                                  ;
-; Family                        ; Cyclone V                                   ;
-; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
-; Total registers               ; N/A until Partition Merge                   ;
-; Total pins                    ; N/A until Partition Merge                   ;
-; Total virtual pins            ; N/A until Partition Merge                   ;
-; Total block memory bits       ; N/A until Partition Merge                   ;
-; Total PLLs                    ; N/A until Partition Merge                   ;
-; Total DLLs                    ; N/A until Partition Merge                   ;
-+-------------------------------+---------------------------------------------+
++---------------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                                  ;
++-------------------------------+-------------------------------------------------+
+; Analysis & Elaboration Status ; Successful - Thu Apr 03 11:50:33 2025           ;
+; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name                 ; Mini_SRC_CPU                                    ;
+; Top-level Entity Name         ; minisrc_tb                                      ;
+; Family                        ; Cyclone V                                       ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                       ;
+; Total registers               ; N/A until Partition Merge                       ;
+; Total pins                    ; N/A until Partition Merge                       ;
+; Total virtual pins            ; N/A until Partition Merge                       ;
+; Total block memory bits       ; N/A until Partition Merge                       ;
+; Total PLLs                    ; N/A until Partition Merge                       ;
+; Total DLLs                    ; N/A until Partition Merge                       ;
++-------------------------------+-------------------------------------------------+
 
 
 +------------------------------------------+
@@ -70,8 +70,8 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -319,6 +319,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|bus:Bus"                                                                                                                  ;
++--------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                                                                                          ;
++--------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; e_Rout ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (16 bits) it drives.  Extra input bit(s) "e_Rout[15..1]" will be connected to GND. ;
+; BAout  ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (16 bits) it drives.  Extra input bit(s) "BAout[15..1]" will be connected to GND.  ;
++--------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
 +----------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:out_port"                                       ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -393,15 +403,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "minisrc:uut|datapath:DP|select_encode:SE_Logic"                                     ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Rout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +-----------------------------------------------------+
 ; Port Connectivity Checks: "minisrc:uut|datapath:DP" ;
 +------+-------+----------+---------------------------+
@@ -437,197 +438,206 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
-    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Apr 03 08:03:48 2025
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+    Info: Processing started: Thu Apr 03 11:50:19 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Mini_SRC_CPU -c Mini_SRC_CPU --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file minisrc_tb.v
-    Info (12023): Found entity 1: minisrc_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 3
+    Info (12023): Found entity 1: minisrc_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc_tb.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file minisrc.v
-    Info (12023): Found entity 1: minisrc File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 3
+    Info (12023): Found entity 1: minisrc File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file control_unit.v
-    Info (12023): Found entity 1: control_unit File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/control_unit.v Line: 3
+    Info (12023): Found entity 1: control_unit File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/control_unit.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brmi_tb.v
-    Info (12023): Found entity 1: brmi_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brmi_tb.v Line: 2
+    Info (12023): Found entity 1: brmi_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/brmi_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brpl_tb.v
-    Info (12023): Found entity 1: brpl_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brpl_tb.v Line: 2
+    Info (12023): Found entity 1: brpl_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/brpl_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ori_case_tb.v
-    Info (12023): Found entity 1: ori_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ori_case_tb.v Line: 2
+    Info (12023): Found entity 1: ori_case_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/ori_case_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/andi_case_tb.v
-    Info (12023): Found entity 1: andi_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/andi_case_tb.v Line: 2
+    Info (12023): Found entity 1: andi_case_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/andi_case_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/mflo_tb.v
-    Info (12023): Found entity 1: mflo_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/mflo_tb.v Line: 2
+    Info (12023): Found entity 1: mflo_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/mflo_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/mfhi_tb.v
-    Info (12023): Found entity 1: mfhi_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/mfhi_tb.v Line: 2
+    Info (12023): Found entity 1: mfhi_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/mfhi_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/store_case2_tb.v
-    Info (12023): Found entity 1: store_case2_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/store_case2_tb.v Line: 2
+    Info (12023): Found entity 1: store_case2_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/store_case2_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/jal_tb.v
-    Info (12023): Found entity 1: jal_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/jal_tb.v Line: 2
+    Info (12023): Found entity 1: jal_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/jal_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/store_tb.v
-    Info (12023): Found entity 1: store_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/store_tb.v Line: 2
+    Info (12023): Found entity 1: store_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/store_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/jr_tb.v
-    Info (12023): Found entity 1: jr_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/jr_tb.v Line: 2
+    Info (12023): Found entity 1: jr_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/jr_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brnz_tb.v
-    Info (12023): Found entity 1: brnz_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brnz_tb.v Line: 2
+    Info (12023): Found entity 1: brnz_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/brnz_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brzr_tb.v
-    Info (12023): Found entity 1: brzr_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brzr_tb.v Line: 2
+    Info (12023): Found entity 1: brzr_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/brzr_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ldi_case4_tb.v
-    Info (12023): Found entity 1: ldi_case4_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ldi_case4_tb.v Line: 2
+    Info (12023): Found entity 1: ldi_case4_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/ldi_case4_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/in_case_tb.v
-    Info (12023): Found entity 1: in_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/in_case_tb.v Line: 2
-Warning (10229): Verilog HDL Expression warning at out_case_tb.v(49): truncated literal to match 4 bits File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/out_case_tb.v Line: 49
+    Info (12023): Found entity 1: in_case_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/in_case_tb.v Line: 2
+Warning (10229): Verilog HDL Expression warning at out_case_tb.v(49): truncated literal to match 4 bits File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/out_case_tb.v Line: 49
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/out_case_tb.v
-    Info (12023): Found entity 1: out_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/out_case_tb.v Line: 2
+    Info (12023): Found entity 1: out_case_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/out_case_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/addi_case_tb.v
-    Info (12023): Found entity 1: addi_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/addi_case_tb.v Line: 2
+    Info (12023): Found entity 1: addi_case_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/addi_case_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ld_case2_tb.v
-    Info (12023): Found entity 1: ld_case2_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ld_case2_tb.v Line: 2
+    Info (12023): Found entity 1: ld_case2_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/ld_case2_tb.v Line: 2
 Warning (12019): Can't analyze file -- file Testbenches/store_case1_tb.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ldi_case3_tb.v
-    Info (12023): Found entity 1: ldi_case3_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ldi_case3_tb.v Line: 2
+    Info (12023): Found entity 1: ldi_case3_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/ldi_case3_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ram_tb.v
-    Info (12023): Found entity 1: ram_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ram_tb.v Line: 2
+    Info (12023): Found entity 1: ram_tb File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/ram_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_ld.v
-    Info (12023): Found entity 1: datapath_tb_ld File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_ld.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_ld File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_ld.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file mux2to1_32.v
-    Info (12023): Found entity 1: mux2to1_32 File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/mux2to1_32.v Line: 1
+    Info (12023): Found entity 1: mux2to1_32 File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/mux2to1_32.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file con_ff_logic.v
-    Info (12023): Found entity 1: con_ff_logic File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/con_ff_logic.v Line: 1
+    Info (12023): Found entity 1: con_ff_logic File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/con_ff_logic.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_sra.v
-    Info (12023): Found entity 1: datapath_tb_sra File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_sra.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_sra File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_sra.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_sll.v
-    Info (12023): Found entity 1: datapath_tb_sll File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_sll.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_sll File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_sll.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_shr.v
-    Info (12023): Found entity 1: datapath_tb_shr File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_shr.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_shr File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_shr.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_ror.v
-    Info (12023): Found entity 1: datapath_tb_ror File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_ror.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_ror File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_ror.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_rol.v
-    Info (12023): Found entity 1: datapath_tb_rol File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_rol File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_not.v
-    Info (12023): Found entity 1: datapath_tb_not File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_not.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_not File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_not.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_neg.v
-    Info (12023): Found entity 1: datapath_tb_neg File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_neg.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_neg File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_neg.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_sub.v
-    Info (12023): Found entity 1: datapath_tb_sub File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_sub.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_sub File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_sub.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_add.v
-    Info (12023): Found entity 1: datapath_tb_add File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_add.v Line: 3
+    Info (12023): Found entity 1: datapath_tb_add File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_add.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_or.v
-    Info (12023): Found entity 1: datapath_tb_or File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_or.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_or File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_or.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_div.v
-    Info (12023): Found entity 1: datapath_tb_div File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_div.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_div File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_div.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_mul.v
-    Info (12023): Found entity 1: datapath_tb_mul File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_mul.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_mul File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_mul.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file alu/subtractor_32bit.v
-    Info (12023): Found entity 1: subtractor_32bit File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/subtractor_32bit.v Line: 1
+    Info (12023): Found entity 1: subtractor_32bit File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/subtractor_32bit.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/full_adder.v
-    Info (12023): Found entity 1: full_adder File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/full_adder.v Line: 1
+    Info (12023): Found entity 1: full_adder File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/full_adder.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/divider.v
-    Info (12023): Found entity 1: divider File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 1
+    Info (12023): Found entity 1: divider File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/divider.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/booth_multiplier.v
-    Info (12023): Found entity 1: booth_multiplier File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 1
+    Info (12023): Found entity 1: booth_multiplier File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/program_counter.v
-    Info (12023): Found entity 1: program_counter File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v Line: 1
+    Info (12023): Found entity 1: program_counter File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Registers/program_counter.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file bus.v
-    Info (12023): Found entity 1: bus File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v Line: 1
+    Info (12023): Found entity 1: bus File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/register_64.v
-    Info (12023): Found entity 1: register_64 File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v Line: 1
+    Info (12023): Found entity 1: register_64 File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Registers/register_64.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/register_32.v
-    Info (12023): Found entity 1: register_32 File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v Line: 1
+    Info (12023): Found entity 1: register_32 File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Registers/register_32.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/register_file.v
-    Info (12023): Found entity 1: register_file File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v Line: 1
+    Info (12023): Found entity 1: register_file File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Registers/register_file.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file datapath.v
-    Info (12023): Found entity 1: datapath File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 1
+    Info (12023): Found entity 1: datapath File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/mdr.v
-    Info (12023): Found entity 1: mdr File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/mdr.v Line: 1
+    Info (12023): Found entity 1: mdr File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Registers/mdr.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/alu.v
-    Info (12023): Found entity 1: alu File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 1
+    Info (12023): Found entity 1: alu File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/alu.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/adder_32bit.v
-    Info (12023): Found entity 1: adder_32bit File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v Line: 1
+    Info (12023): Found entity 1: adder_32bit File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/adder_32bit.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_and.v
-    Info (12023): Found entity 1: datapath_tb_and File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_and.v Line: 2
+    Info (12023): Found entity 1: datapath_tb_and File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/Testbenches/datapath_tb_and.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file ram.v
-    Info (12023): Found entity 1: ram File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 1
+    Info (12023): Found entity 1: ram File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file select_encode.v
-    Info (12023): Found entity 1: select_encode File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/select_encode.v Line: 1
+    Info (12023): Found entity 1: select_encode File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/select_encode.v Line: 1
 Info (12127): Elaborating entity "minisrc_tb" for the top level hierarchy
-Warning (10755): Verilog HDL warning at minisrc_tb.v(38): assignments to Clock create a combinational loop File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 38
-Info (12128): Elaborating entity "minisrc" for hierarchy "minisrc:uut" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 27
-Warning (10034): Output port "Halt" at minisrc.v(10) has no driver File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 10
-Info (12128): Elaborating entity "control_unit" for hierarchy "minisrc:uut|control_unit:CU" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 45
-Warning (10235): Verilog HDL Always Construct warning at control_unit.v(769): variable "CON_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/control_unit.v Line: 769
-Info (10264): Verilog HDL Case Statement information at control_unit.v(334): all case item expressions in this case statement are onehot File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/control_unit.v Line: 334
-Info (12128): Elaborating entity "datapath" for hierarchy "minisrc:uut|datapath:DP" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 67
-Info (12128): Elaborating entity "register_file" for hierarchy "minisrc:uut|datapath:DP|register_file:GP_reg" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 81
-Info (12128): Elaborating entity "program_counter" for hierarchy "minisrc:uut|datapath:DP|program_counter:PC" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 84
-Info (12128): Elaborating entity "register_32" for hierarchy "minisrc:uut|datapath:DP|register_32:IR" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 85
-Info (12128): Elaborating entity "select_encode" for hierarchy "minisrc:uut|datapath:DP|select_encode:SE_Logic" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 87
-Info (12128): Elaborating entity "mux2to1_32" for hierarchy "minisrc:uut|datapath:DP|mux2to1_32:mux_ALU_B" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 99
-Info (12128): Elaborating entity "alu" for hierarchy "minisrc:uut|datapath:DP|alu:ALU" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 101
-Info (12128): Elaborating entity "adder_32bit" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 51
-Info (12128): Elaborating entity "full_adder" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v Line: 21
-Info (12128): Elaborating entity "subtractor_32bit" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 59
-Info (12128): Elaborating entity "booth_multiplier" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|booth_multiplier:u_mult" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 66
-Warning (10199): Verilog HDL Case Statement warning at booth_multiplier.v(26): case item expression never matches the case expression File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 26
-Info (10264): Verilog HDL Case Statement information at booth_multiplier.v(25): all case item expressions in this case statement are onehot File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 25
-Info (12128): Elaborating entity "divider" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|divider:u_div" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 74
-Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "R", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
-Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "Q", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
-Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "M", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
-Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
-Info (12128): Elaborating entity "register_64" for hierarchy "minisrc:uut|datapath:DP|register_64:Z" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 103
-Info (12128): Elaborating entity "mdr" for hierarchy "minisrc:uut|datapath:DP|mdr:MDR" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 110
-Info (12128): Elaborating entity "ram" for hierarchy "minisrc:uut|datapath:DP|ram:RAM" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 113
-Warning (10240): Verilog HDL Always Construct warning at ram.v(19): inferring latch(es) for variable "data_out", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[0]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[1]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[2]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[3]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[4]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[5]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[6]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[7]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[8]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[9]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[10]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[11]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[12]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[13]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[14]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[15]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[16]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[17]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[18]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[19]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[20]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[21]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[22]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[23]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[24]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[25]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[26]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[27]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[28]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[29]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[30]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (10041): Inferred latch for "data_out[31]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
-Info (12128): Elaborating entity "con_ff_logic" for hierarchy "minisrc:uut|datapath:DP|con_ff_logic:CON_FF" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 117
-Warning (10240): Verilog HDL Always Construct warning at con_ff_logic.v(9): inferring latch(es) for variable "CON_out", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/con_ff_logic.v Line: 9
-Info (10041): Inferred latch for "CON_out" at con_ff_logic.v(9) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/con_ff_logic.v Line: 9
-Info (12128): Elaborating entity "bus" for hierarchy "minisrc:uut|datapath:DP|bus:Bus" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 151
+Warning (10755): Verilog HDL warning at minisrc_tb.v(38): assignments to Clock create a combinational loop File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc_tb.v Line: 38
+Info (12128): Elaborating entity "minisrc" for hierarchy "minisrc:uut" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc_tb.v Line: 27
+Warning (10034): Output port "Halt" at minisrc.v(10) has no driver File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc.v Line: 10
+Info (12128): Elaborating entity "control_unit" for hierarchy "minisrc:uut|control_unit:CU" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc.v Line: 45
+Warning (10235): Verilog HDL Always Construct warning at control_unit.v(770): variable "CON_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/control_unit.v Line: 770
+Info (10264): Verilog HDL Case Statement information at control_unit.v(334): all case item expressions in this case statement are onehot File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/control_unit.v Line: 334
+Info (12128): Elaborating entity "datapath" for hierarchy "minisrc:uut|datapath:DP" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc.v Line: 67
+Info (12128): Elaborating entity "register_file" for hierarchy "minisrc:uut|datapath:DP|register_file:GP_reg" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 81
+Info (12128): Elaborating entity "program_counter" for hierarchy "minisrc:uut|datapath:DP|program_counter:PC" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 84
+Info (12128): Elaborating entity "register_32" for hierarchy "minisrc:uut|datapath:DP|register_32:IR" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 85
+Info (12128): Elaborating entity "select_encode" for hierarchy "minisrc:uut|datapath:DP|select_encode:SE_Logic" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 87
+Info (12128): Elaborating entity "mux2to1_32" for hierarchy "minisrc:uut|datapath:DP|mux2to1_32:mux_ALU_B" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 99
+Info (12128): Elaborating entity "alu" for hierarchy "minisrc:uut|datapath:DP|alu:ALU" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 101
+Info (12128): Elaborating entity "adder_32bit" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/alu.v Line: 51
+Info (12128): Elaborating entity "full_adder" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/adder_32bit.v Line: 21
+Info (12128): Elaborating entity "subtractor_32bit" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/alu.v Line: 59
+Info (12128): Elaborating entity "booth_multiplier" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|booth_multiplier:u_mult" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/alu.v Line: 66
+Warning (10199): Verilog HDL Case Statement warning at booth_multiplier.v(26): case item expression never matches the case expression File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 26
+Info (10264): Verilog HDL Case Statement information at booth_multiplier.v(25): all case item expressions in this case statement are onehot File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 25
+Info (12128): Elaborating entity "divider" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|divider:u_div" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/alu.v Line: 74
+Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "R", which holds its previous value in one or more paths through the always construct File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/divider.v Line: 14
+Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "Q", which holds its previous value in one or more paths through the always construct File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/divider.v Line: 14
+Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "M", which holds its previous value in one or more paths through the always construct File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/divider.v Line: 14
+Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ALU/divider.v Line: 14
+Info (12128): Elaborating entity "register_64" for hierarchy "minisrc:uut|datapath:DP|register_64:Z" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 103
+Info (12128): Elaborating entity "mdr" for hierarchy "minisrc:uut|datapath:DP|mdr:MDR" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 110
+Info (12128): Elaborating entity "ram" for hierarchy "minisrc:uut|datapath:DP|ram:RAM" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 113
+Warning (10240): Verilog HDL Always Construct warning at ram.v(19): inferring latch(es) for variable "data_out", which holds its previous value in one or more paths through the always construct File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[0]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[1]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[2]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[3]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[4]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[5]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[6]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[7]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[8]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[9]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[10]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[11]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[12]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[13]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[14]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[15]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[16]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[17]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[18]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[19]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[20]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[21]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[22]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[23]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[24]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[25]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[26]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[27]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[28]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[29]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[30]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[31]" at ram.v(19) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/ram.v Line: 19
+Info (12128): Elaborating entity "con_ff_logic" for hierarchy "minisrc:uut|datapath:DP|con_ff_logic:CON_FF" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 117
+Warning (10240): Verilog HDL Always Construct warning at con_ff_logic.v(9): inferring latch(es) for variable "CON_out", which holds its previous value in one or more paths through the always construct File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/con_ff_logic.v Line: 9
+Info (10041): Inferred latch for "CON_out" at con_ff_logic.v(9) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/con_ff_logic.v Line: 9
+Info (12128): Elaborating entity "bus" for hierarchy "minisrc:uut|datapath:DP|bus:Bus" File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/datapath.v Line: 154
+Warning (10270): Verilog HDL Case Statement warning at bus.v(19): incomplete case statement has no default case item File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 19
+Info (10264): Verilog HDL Case Statement information at bus.v(19): all case item expressions in this case statement are onehot File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 19
+Warning (10240): Verilog HDL Always Construct warning at bus.v(18): inferring latch(es) for variable "select", which holds its previous value in one or more paths through the always construct File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 18
+Info (10041): Inferred latch for "select[0]" at bus.v(18) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 18
+Info (10041): Inferred latch for "select[1]" at bus.v(18) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 18
+Info (10041): Inferred latch for "select[2]" at bus.v(18) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 18
+Info (10041): Inferred latch for "select[3]" at bus.v(18) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 18
+Info (10041): Inferred latch for "select[4]" at bus.v(18) File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/bus.v Line: 18
 Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "Clock" is missing source, defaulting to GND File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 5
-Info (144001): Generated suppressed messages file D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/output_files/Mini_SRC_CPU.map.smsg
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 16 warnings
-    Info: Peak virtual memory: 4796 megabytes
-    Info: Processing ended: Thu Apr 03 08:03:57 2025
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:18
+    Warning (12110): Net "Clock" is missing source, defaulting to GND File: C:/Users/18eiaj/Desktop/Mini_SRC_CPU/minisrc_tb.v Line: 5
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (144001): Generated suppressed messages file C:/Users/18eiaj/Desktop/Mini_SRC_CPU/output_files/Mini_SRC_CPU.map.smsg
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 18 warnings
+    Info: Peak virtual memory: 4800 megabytes
+    Info: Processing ended: Thu Apr 03 11:50:33 2025
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:12
 
 
 +--------------------------------------------+
 ; Analysis & Elaboration Suppressed Messages ;
 +--------------------------------------------+
-The suppressed messages can be found in D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/output_files/Mini_SRC_CPU.map.smsg.
+The suppressed messages can be found in C:/Users/18eiaj/Desktop/Mini_SRC_CPU/output_files/Mini_SRC_CPU.map.smsg.
 
 

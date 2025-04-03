@@ -12,7 +12,7 @@ module ram(
     integer i;
 	 
 	initial begin
-      $readmemh("ram_init copy.hex", memory);
+      $readmemh("ram_init.hex", memory);
     end
     
     always @(*) begin

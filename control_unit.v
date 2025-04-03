@@ -401,16 +401,16 @@ module control_unit (
             end
             
             ldi4: begin
-                imm_sel <= 1;
-                ALU_op <= ALU_ADD;
-                e_Z <= 1;
                 BusDataSelect <= BUS_IMM;
+                ALU_op <= ALU_ADD;
+                imm_sel <= 1;
+                e_Z <= 1;
             end
             
             ldi5: begin
+                BusDataSelect <= BUS_ZLOW;
                 Gra <= 1;
                 e_Rin <= 1;
-                BusDataSelect <= BUS_ZLOW;
             end
             
             // st instruction states (st C(Ry), Rx)
@@ -668,10 +668,10 @@ module control_unit (
             end
             
             neg4: begin
-                // This state may not be needed for NEG, could go straight to neg5
-                e_Z <= 0;
+                Gra <= 1;
+                e_Rin <= 1;
+                BusDataSelect <= BUS_ZLOW;
             end
-
             
             // NOT instruction states (not Rx, Ry)
             not3: begin
@@ -682,8 +682,9 @@ module control_unit (
             end
             
             not4: begin
-                // This state may not be needed for NOT, could go straight to not5
-                e_Z <= 0;
+                Gra <= 1;
+                e_Rin <= 1;
+                BusDataSelect <= BUS_ZLOW;
             end
             
             // ADDI instruction states (addi Rx, Ry, C)

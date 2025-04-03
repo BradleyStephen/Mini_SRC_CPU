@@ -34,12 +34,12 @@ module select_encode(
         if (e_Rin)
             Rin[reg_sel] = 1'b1;
         
-        if (e_Rout)
+        if (e_Rout || BAout)
             Rout[reg_sel] = 1'b1;
         
         // If BAout is asserted and R0 is selected, force Rout to 0.
-        if (BAout && (reg_sel == 4'b0000))
-            Rout = 16'b0;
+        //if (BAout && (reg_sel == 4'b0000))
+        //    Rout = 16'b0;
         
         // Sign-extend the constant.
         // Replicates IR[18] 14 times and concatenates with IR[17:0] to form a 32-bit value.
