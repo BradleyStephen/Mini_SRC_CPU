@@ -7,7 +7,7 @@ module program_counter(
 	output reg [31:0] Q
 );
 
-	always @(posedge clk or posedge clr) begin
+	always @(negedge clk or posedge clr) begin
 		
 		if (clr)
 			Q <= 32'b0;

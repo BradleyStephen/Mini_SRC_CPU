@@ -2,7 +2,7 @@ module datapath(
 	input wire clear, clock, incPC,
 
 	//register write enable signals
-	input wire e_PC, e_IR, e_Y, e_Z, e_HI, e_LO, e_MDR, e_MAR, e_GP, e_OutPort, e_InPort,
+	input wire e_PC, e_IR, e_Y, e_Z, e_HI, e_LO, e_MDR, e_MAR, e_OutPort, e_InPort,
    	input wire e_RA, e_CON_FF,
 	
 	input wire ram_read, ram_write,
@@ -23,13 +23,12 @@ module datapath(
 	input wire imm_sel,
 
 	output wire [31:0] IRout,
-	output wire [31:0] BusData,
-	output wire [31:0] BusIn_PC
+	output wire [31:0] BusData
 
 );
 
 	// Declare an internal wire for the memory output:
-    wire [31:0] mdata_out;
+    wire [31:0] Mdatain;
 
 	wire [31:0] ALU_A;
 	wire [31:0] ALU_B;
@@ -44,7 +43,7 @@ module datapath(
 	// Bus signals for GP registers outputs
 	wire [31:0] BusIn_R0, BusIn_R1, BusIn_R2, BusIn_R3, BusIn_R4, BusIn_R5, BusIn_R6, BusIn_R7;
 	wire [31:0] BusIn_R8, BusIn_R9, BusIn_R10, BusIn_R11, BusIn_R12, BusIn_R13, BusIn_R14, BusIn_R15;
-	wire [31:0] BusIn_HI, BusIn_LO, BusIn_Zhigh, BusIn_Zlow, BusIn_MDR, BusIn_InPort;
+	wire [31:0] BusIn_HI, BusIn_LO, BusIn_Zhigh, BusIn_Zlow, BusIn_MDR, BusIn_InPort, BusIn_PC;
 	
 	
 	// Wires for select_encode outputs
@@ -53,7 +52,7 @@ module datapath(
 	wire [31:0] C_sign_ext;
 	
 	// CON FF signals
-	wire CONout;
+	wire CON_out;
 	wire [31:0] Ra_value;
     
 	// general purpose 32 bit registers
@@ -108,10 +107,10 @@ module datapath(
 
 	//Memory "Gateway"
 	register_32 MAR(clear, clock, e_MAR, BusData, Maddrout);
-	mdr MDR(clear, clock, e_MDR, MDR_read, BusData, mdata_out, BusIn_MDR);
+	mdr MDR(clear, clock, e_MDR, MDR_read, BusData, Mdatain, BusIn_MDR);
 
 	//RAM module
-	ram RAM (clear, clock, ram_read, ram_write, Maddrout[8:0], BusData, mdata_out);
+	ram RAM (clear, clock, ram_read, ram_write, Maddrout[8:0], BusData, Mdatain);
 
 	//CON FF Logic
 	register_32 RA_reg(clear, clock, e_RA, BusData, Ra_value);

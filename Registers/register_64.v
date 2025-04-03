@@ -8,7 +8,7 @@ module register_64 (
 );
 
     // Register data storage logic
-    always @(posedge clk or posedge clr) begin
+    always @(negedge clk or posedge clr) begin
         if (clr) begin
             Q_low <= 16'b0; // Clear register to zero on reset
 				Q_high <= 16'b0;

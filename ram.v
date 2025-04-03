@@ -12,10 +12,10 @@ module ram(
     integer i;
 	 
 	initial begin
-      $readmemh("ram_init.hex", memory);
+      $readmemh("ram_init copy.hex", memory);
     end
     
-    always @(posedge clk or posedge clr) begin
+    always @(*) begin
         if (clr) begin
             // To preserve preloaded values, we comment out the clearing loop.
             // for (i = 0; i < 512; i = i + 1) begin

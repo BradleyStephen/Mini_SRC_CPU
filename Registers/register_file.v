@@ -26,7 +26,7 @@ module register_file (
 	integer i;
     
 	//write logic 
-	always @(posedge clk or posedge clr) begin
+	always @(negedge clk or posedge clr) begin
 		if (clr) begin
 			for (i = 0; i < 16; i = i + 1)
 				registers[i] <= 32'b0;

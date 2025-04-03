@@ -1,5 +1,5 @@
 Analysis & Elaboration report for Mini_SRC_CPU
-Thu Feb 27 22:55:53 2025
+Thu Apr 03 08:03:57 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -9,18 +9,22 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   1. Legal Notice
   2. Analysis & Elaboration Summary
   3. Parallel Compilation
-  4. Parameter Settings for User Entity Instance: Top-level Entity: |datapath_tb_rol
+  4. Parameter Settings for User Entity Instance: minisrc:uut|control_unit:CU
   5. Analysis & Elaboration Settings
-  6. Port Connectivity Checks: "datapath:DUT|register_32:MAR"
-  7. Port Connectivity Checks: "datapath:DUT|alu:ALU|subtractor_32bit:u_sub|adder_32bit:add_one"
-  8. Port Connectivity Checks: "datapath:DUT|alu:ALU|subtractor_32bit:u_sub"
-  9. Port Connectivity Checks: "datapath:DUT|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst"
- 10. Port Connectivity Checks: "datapath:DUT|alu:ALU|adder_32bit:u_adder"
- 11. Port Connectivity Checks: "datapath:DUT|alu:ALU"
- 12. Port Connectivity Checks: "datapath:DUT|register_32:IR"
- 13. Port Connectivity Checks: "datapath:DUT"
- 14. Analysis & Elaboration Messages
- 15. Analysis & Elaboration Suppressed Messages
+  6. Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:out_port"
+  7. Port Connectivity Checks: "minisrc:uut|datapath:DP|con_ff_logic:CON_FF"
+  8. Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:MAR"
+  9. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub|adder_32bit:add_one"
+ 10. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub"
+ 11. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst"
+ 12. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder"
+ 13. Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU"
+ 14. Port Connectivity Checks: "minisrc:uut|datapath:DP|select_encode:SE_Logic"
+ 15. Port Connectivity Checks: "minisrc:uut|datapath:DP"
+ 16. Port Connectivity Checks: "minisrc:uut|control_unit:CU"
+ 17. Port Connectivity Checks: "minisrc:uut"
+ 18. Analysis & Elaboration Messages
+ 19. Analysis & Elaboration Suppressed Messages
 
 
 
@@ -46,10 +50,10 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                              ;
 +-------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status ; Successful - Thu Feb 27 22:55:53 2025       ;
+; Analysis & Elaboration Status ; Successful - Thu Apr 03 08:03:57 2025       ;
 ; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                 ; Mini_SRC_CPU                                ;
-; Top-level Entity Name         ; datapath_tb_rol                             ;
+; Top-level Entity Name         ; minisrc_tb                                  ;
 ; Family                        ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
 ; Total registers               ; N/A until Partition Merge                   ;
@@ -77,25 +81,154 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |datapath_tb_rol ;
-+----------------+-------+--------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                   ;
-+----------------+-------+--------------------------------------------------------+
-; Default        ; 0000  ; Unsigned Binary                                        ;
-; Reg_load1a     ; 0001  ; Unsigned Binary                                        ;
-; Reg_load1b     ; 0010  ; Unsigned Binary                                        ;
-; Reg_load2a     ; 0011  ; Unsigned Binary                                        ;
-; Reg_load2b     ; 0100  ; Unsigned Binary                                        ;
-; Reg_load3a     ; 0101  ; Unsigned Binary                                        ;
-; Reg_load3b     ; 0110  ; Unsigned Binary                                        ;
-; T0             ; 0111  ; Unsigned Binary                                        ;
-; T1             ; 1000  ; Unsigned Binary                                        ;
-; T2             ; 1001  ; Unsigned Binary                                        ;
-; T3             ; 1010  ; Unsigned Binary                                        ;
-; T4             ; 1011  ; Unsigned Binary                                        ;
-; T5             ; 1100  ; Unsigned Binary                                        ;
-+----------------+-------+--------------------------------------------------------+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: minisrc:uut|control_unit:CU ;
++----------------+----------+----------------------------------------------+
+; Parameter Name ; Value    ; Type                                         ;
++----------------+----------+----------------------------------------------+
+; reset_state    ; 00000000 ; Unsigned Binary                              ;
+; fetch0         ; 00000001 ; Unsigned Binary                              ;
+; fetch1         ; 00000010 ; Unsigned Binary                              ;
+; fetch2         ; 00000011 ; Unsigned Binary                              ;
+; ld3            ; 00000100 ; Unsigned Binary                              ;
+; ld4            ; 00000101 ; Unsigned Binary                              ;
+; ld5            ; 00000110 ; Unsigned Binary                              ;
+; ld6            ; 00000111 ; Unsigned Binary                              ;
+; ld7            ; 00001000 ; Unsigned Binary                              ;
+; ldi3           ; 00001001 ; Unsigned Binary                              ;
+; ldi4           ; 00001010 ; Unsigned Binary                              ;
+; ldi5           ; 00001011 ; Unsigned Binary                              ;
+; st3            ; 00001100 ; Unsigned Binary                              ;
+; st4            ; 00001101 ; Unsigned Binary                              ;
+; st5            ; 00001110 ; Unsigned Binary                              ;
+; st6            ; 00001111 ; Unsigned Binary                              ;
+; add3           ; 00010000 ; Unsigned Binary                              ;
+; add4           ; 00010001 ; Unsigned Binary                              ;
+; add5           ; 00010010 ; Unsigned Binary                              ;
+; sub3           ; 00010011 ; Unsigned Binary                              ;
+; sub4           ; 00010100 ; Unsigned Binary                              ;
+; sub5           ; 00010101 ; Unsigned Binary                              ;
+; and3           ; 00010110 ; Unsigned Binary                              ;
+; and4           ; 00010111 ; Unsigned Binary                              ;
+; and5           ; 00011000 ; Unsigned Binary                              ;
+; or3            ; 00011001 ; Unsigned Binary                              ;
+; or4            ; 00011010 ; Unsigned Binary                              ;
+; or5            ; 00011011 ; Unsigned Binary                              ;
+; shl3           ; 00011100 ; Unsigned Binary                              ;
+; shl4           ; 00011101 ; Unsigned Binary                              ;
+; shl5           ; 00011110 ; Unsigned Binary                              ;
+; shr3           ; 00011111 ; Unsigned Binary                              ;
+; shr4           ; 00100000 ; Unsigned Binary                              ;
+; shr5           ; 00100001 ; Unsigned Binary                              ;
+; shra3          ; 00100010 ; Unsigned Binary                              ;
+; shra4          ; 00100011 ; Unsigned Binary                              ;
+; shra5          ; 00100100 ; Unsigned Binary                              ;
+; ror3           ; 00100101 ; Unsigned Binary                              ;
+; ror4           ; 00100110 ; Unsigned Binary                              ;
+; ror5           ; 00100111 ; Unsigned Binary                              ;
+; rol3           ; 00101000 ; Unsigned Binary                              ;
+; rol4           ; 00101001 ; Unsigned Binary                              ;
+; rol5           ; 00101010 ; Unsigned Binary                              ;
+; mul3           ; 00101011 ; Unsigned Binary                              ;
+; mul4           ; 00101100 ; Unsigned Binary                              ;
+; mul5           ; 00101101 ; Unsigned Binary                              ;
+; mul6           ; 00101110 ; Unsigned Binary                              ;
+; div3           ; 00101111 ; Unsigned Binary                              ;
+; div4           ; 00110000 ; Unsigned Binary                              ;
+; div5           ; 00110001 ; Unsigned Binary                              ;
+; div6           ; 00110010 ; Unsigned Binary                              ;
+; neg3           ; 00110011 ; Unsigned Binary                              ;
+; neg4           ; 00110100 ; Unsigned Binary                              ;
+; not3           ; 00110101 ; Unsigned Binary                              ;
+; not4           ; 00110110 ; Unsigned Binary                              ;
+; addi3          ; 00110111 ; Unsigned Binary                              ;
+; addi4          ; 00111000 ; Unsigned Binary                              ;
+; addi5          ; 00111001 ; Unsigned Binary                              ;
+; andi3          ; 00111010 ; Unsigned Binary                              ;
+; andi4          ; 00111011 ; Unsigned Binary                              ;
+; andi5          ; 00111100 ; Unsigned Binary                              ;
+; ori3           ; 00111101 ; Unsigned Binary                              ;
+; ori4           ; 00111110 ; Unsigned Binary                              ;
+; ori5           ; 00111111 ; Unsigned Binary                              ;
+; br3            ; 01000000 ; Unsigned Binary                              ;
+; br4            ; 01000001 ; Unsigned Binary                              ;
+; br5            ; 01000010 ; Unsigned Binary                              ;
+; br6            ; 01000011 ; Unsigned Binary                              ;
+; jr3            ; 01000100 ; Unsigned Binary                              ;
+; jal3           ; 01000101 ; Unsigned Binary                              ;
+; jal4           ; 01000110 ; Unsigned Binary                              ;
+; mfhi3          ; 01000111 ; Unsigned Binary                              ;
+; mflo3          ; 01001000 ; Unsigned Binary                              ;
+; in3            ; 01001001 ; Unsigned Binary                              ;
+; out3           ; 01001010 ; Unsigned Binary                              ;
+; nop3           ; 01001011 ; Unsigned Binary                              ;
+; halt3          ; 01001100 ; Unsigned Binary                              ;
+; LD             ; 00000    ; Unsigned Binary                              ;
+; LDI            ; 00001    ; Unsigned Binary                              ;
+; ST             ; 00010    ; Unsigned Binary                              ;
+; ADD            ; 00011    ; Unsigned Binary                              ;
+; SUB            ; 00100    ; Unsigned Binary                              ;
+; AND            ; 00101    ; Unsigned Binary                              ;
+; OR             ; 00110    ; Unsigned Binary                              ;
+; ROR            ; 00111    ; Unsigned Binary                              ;
+; ROL            ; 01000    ; Unsigned Binary                              ;
+; SHR            ; 01001    ; Unsigned Binary                              ;
+; SHRA           ; 01010    ; Unsigned Binary                              ;
+; SHL            ; 01011    ; Unsigned Binary                              ;
+; ADDI           ; 01100    ; Unsigned Binary                              ;
+; ANDI           ; 01101    ; Unsigned Binary                              ;
+; ORI            ; 01110    ; Unsigned Binary                              ;
+; DIV            ; 01111    ; Unsigned Binary                              ;
+; MUL            ; 10000    ; Unsigned Binary                              ;
+; NEG            ; 10001    ; Unsigned Binary                              ;
+; NOT            ; 10010    ; Unsigned Binary                              ;
+; BR             ; 10011    ; Unsigned Binary                              ;
+; JAL            ; 10100    ; Unsigned Binary                              ;
+; JR             ; 10101    ; Unsigned Binary                              ;
+; IN             ; 10110    ; Unsigned Binary                              ;
+; OUT            ; 10111    ; Unsigned Binary                              ;
+; MFLO           ; 11000    ; Unsigned Binary                              ;
+; MFHI           ; 11001    ; Unsigned Binary                              ;
+; NOP            ; 11010    ; Unsigned Binary                              ;
+; HALT           ; 11011    ; Unsigned Binary                              ;
+; ALU_AND        ; 0000     ; Unsigned Binary                              ;
+; ALU_OR         ; 0001     ; Unsigned Binary                              ;
+; ALU_NOT        ; 0010     ; Unsigned Binary                              ;
+; ALU_ADD        ; 0011     ; Unsigned Binary                              ;
+; ALU_SUB        ; 0100     ; Unsigned Binary                              ;
+; ALU_MUL        ; 0101     ; Unsigned Binary                              ;
+; ALU_DIV        ; 0110     ; Unsigned Binary                              ;
+; ALU_SHL        ; 0111     ; Unsigned Binary                              ;
+; ALU_SHR        ; 1000     ; Unsigned Binary                              ;
+; ALU_ROL        ; 1001     ; Unsigned Binary                              ;
+; ALU_ROR        ; 1010     ; Unsigned Binary                              ;
+; ALU_NEG        ; 1011     ; Unsigned Binary                              ;
+; ALU_SHRA       ; 1100     ; Unsigned Binary                              ;
+; BUS_R0         ; 00000    ; Unsigned Binary                              ;
+; BUS_R1         ; 00001    ; Unsigned Binary                              ;
+; BUS_R2         ; 00010    ; Unsigned Binary                              ;
+; BUS_R3         ; 00011    ; Unsigned Binary                              ;
+; BUS_R4         ; 00100    ; Unsigned Binary                              ;
+; BUS_R5         ; 00101    ; Unsigned Binary                              ;
+; BUS_R6         ; 00110    ; Unsigned Binary                              ;
+; BUS_R7         ; 00111    ; Unsigned Binary                              ;
+; BUS_R8         ; 01000    ; Unsigned Binary                              ;
+; BUS_R9         ; 01001    ; Unsigned Binary                              ;
+; BUS_R10        ; 01010    ; Unsigned Binary                              ;
+; BUS_R11        ; 01011    ; Unsigned Binary                              ;
+; BUS_R12        ; 01100    ; Unsigned Binary                              ;
+; BUS_R13        ; 01101    ; Unsigned Binary                              ;
+; BUS_R14        ; 01110    ; Unsigned Binary                              ;
+; BUS_R15        ; 01111    ; Unsigned Binary                              ;
+; BUS_HI         ; 10000    ; Unsigned Binary                              ;
+; BUS_LO         ; 10001    ; Unsigned Binary                              ;
+; BUS_ZHIGH      ; 10010    ; Unsigned Binary                              ;
+; BUS_ZLOW       ; 10011    ; Unsigned Binary                              ;
+; BUS_PC         ; 10100    ; Unsigned Binary                              ;
+; BUS_MDR        ; 10101    ; Unsigned Binary                              ;
+; BUS_INPORT     ; 10110    ; Unsigned Binary                              ;
+; BUS_IMM        ; 10111    ; Unsigned Binary                              ;
++----------------+----------+----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -105,7 +238,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CEBA4F23C7        ;                    ;
-; Top-level entity name                                                           ; datapath_tb_rol    ; Mini_SRC_CPU       ;
+; Top-level entity name                                                           ; minisrc_tb         ; Mini_SRC_CPU       ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -187,7 +320,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT|register_32:MAR"                                                       ;
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:out_port"                                       ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -195,8 +328,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|con_ff_logic:CON_FF"                                           ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; CON_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT|alu:ALU|subtractor_32bit:u_sub|adder_32bit:add_one"                        ;
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|register_32:MAR"                                                ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Q[31..9] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub|adder_32bit:add_one"             ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port     ; Type   ; Severity ; Details                                                                             ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -207,7 +358,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT|alu:ALU|subtractor_32bit:u_sub"                                          ;
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub"                               ;
 +--------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port   ; Type   ; Severity ; Details                                                                             ;
 +--------+--------+----------+-------------------------------------------------------------------------------------+
@@ -215,17 +366,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst" ;
-+------+-------+----------+----------------------------------------------------------------------------+
-; Port ; Type  ; Severity ; Details                                                                    ;
-+------+-------+----------+----------------------------------------------------------------------------+
-; cin  ; Input ; Info     ; Stuck at GND                                                               ;
-+------+-------+----------+----------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst" ;
++------+-------+----------+---------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                               ;
++------+-------+----------+---------------------------------------------------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at GND                                                                          ;
++------+-------+----------+---------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT|alu:ALU|adder_32bit:u_adder"                                           ;
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder"                                ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -234,7 +385,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT|alu:ALU"                                                               ;
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|alu:ALU"                                                    ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -243,46 +394,42 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT|register_32:IR"                                                        ;
+; Port Connectivity Checks: "minisrc:uut|datapath:DP|select_encode:SE_Logic"                                     ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
-; Q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Rout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------+
-; Port Connectivity Checks: "datapath:DUT"           ;
-+------------------+-------+----------+--------------+
-; Port             ; Type  ; Severity ; Details      ;
-+------------------+-------+----------+--------------+
-; clear            ; Input ; Info     ; Stuck at GND ;
-; incPC            ; Input ; Info     ; Stuck at GND ;
-; GP_addr[3]       ; Input ; Info     ; Stuck at GND ;
-; Mdatain[12..11]  ; Input ; Info     ; Stuck at GND ;
-; Mdatain[4..3]    ; Input ; Info     ; Stuck at GND ;
-; Mdatain[30]      ; Input ; Info     ; Stuck at GND ;
-; Mdatain[28]      ; Input ; Info     ; Stuck at GND ;
-; Mdatain[22]      ; Input ; Info     ; Stuck at GND ;
-; Mdatain[19]      ; Input ; Info     ; Stuck at GND ;
-; Mdatain[14]      ; Input ; Info     ; Stuck at GND ;
-; Mdatain[9]       ; Input ; Info     ; Stuck at GND ;
-; Mdatain[6]       ; Input ; Info     ; Stuck at GND ;
-; MDR_read         ; Input ; Info     ; Stuck at GND ;
-; e_PC             ; Input ; Info     ; Stuck at GND ;
-; e_IR             ; Input ; Info     ; Stuck at GND ;
-; e_Y              ; Input ; Info     ; Stuck at GND ;
-; e_Z              ; Input ; Info     ; Stuck at GND ;
-; e_HI             ; Input ; Info     ; Stuck at GND ;
-; e_LO             ; Input ; Info     ; Stuck at GND ;
-; e_MDR            ; Input ; Info     ; Stuck at GND ;
-; e_MAR            ; Input ; Info     ; Stuck at GND ;
-; e_GP             ; Input ; Info     ; Stuck at GND ;
-; ALU_op[2..1]     ; Input ; Info     ; Stuck at GND ;
-; ALU_op[3]        ; Input ; Info     ; Stuck at VCC ;
-; ALU_op[0]        ; Input ; Info     ; Stuck at VCC ;
-; BusDataSelect[3] ; Input ; Info     ; Stuck at GND ;
-+------------------+-------+----------+--------------+
++-----------------------------------------------------+
+; Port Connectivity Checks: "minisrc:uut|datapath:DP" ;
++------+-------+----------+---------------------------+
+; Port ; Type  ; Severity ; Details                   ;
++------+-------+----------+---------------------------+
+; e_RA ; Input ; Info     ; Stuck at VCC              ;
++------+-------+----------+---------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "minisrc:uut|control_unit:CU" ;
++---------+-------+----------+----------------------------+
+; Port    ; Type  ; Severity ; Details                    ;
++---------+-------+----------+----------------------------+
+; CON_out ; Input ; Info     ; Stuck at GND               ;
++---------+-------+----------+----------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "minisrc:uut"                                                                           ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; IR_out  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Run     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Halt    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; BusData ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +---------------------------------+
@@ -291,10 +438,62 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Feb 27 22:55:45 2025
+    Info: Processing started: Thu Apr 03 08:03:48 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Mini_SRC_CPU -c Mini_SRC_CPU --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file minisrc_tb.v
+    Info (12023): Found entity 1: minisrc_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file minisrc.v
+    Info (12023): Found entity 1: minisrc File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file control_unit.v
+    Info (12023): Found entity 1: control_unit File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/control_unit.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brmi_tb.v
+    Info (12023): Found entity 1: brmi_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brmi_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brpl_tb.v
+    Info (12023): Found entity 1: brpl_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brpl_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ori_case_tb.v
+    Info (12023): Found entity 1: ori_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ori_case_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/andi_case_tb.v
+    Info (12023): Found entity 1: andi_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/andi_case_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/mflo_tb.v
+    Info (12023): Found entity 1: mflo_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/mflo_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/mfhi_tb.v
+    Info (12023): Found entity 1: mfhi_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/mfhi_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/store_case2_tb.v
+    Info (12023): Found entity 1: store_case2_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/store_case2_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/jal_tb.v
+    Info (12023): Found entity 1: jal_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/jal_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/store_tb.v
+    Info (12023): Found entity 1: store_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/store_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/jr_tb.v
+    Info (12023): Found entity 1: jr_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/jr_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brnz_tb.v
+    Info (12023): Found entity 1: brnz_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brnz_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/brzr_tb.v
+    Info (12023): Found entity 1: brzr_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/brzr_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ldi_case4_tb.v
+    Info (12023): Found entity 1: ldi_case4_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ldi_case4_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/in_case_tb.v
+    Info (12023): Found entity 1: in_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/in_case_tb.v Line: 2
+Warning (10229): Verilog HDL Expression warning at out_case_tb.v(49): truncated literal to match 4 bits File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/out_case_tb.v Line: 49
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/out_case_tb.v
+    Info (12023): Found entity 1: out_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/out_case_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/addi_case_tb.v
+    Info (12023): Found entity 1: addi_case_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/addi_case_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ld_case2_tb.v
+    Info (12023): Found entity 1: ld_case2_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ld_case2_tb.v Line: 2
+Warning (12019): Can't analyze file -- file Testbenches/store_case1_tb.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ldi_case3_tb.v
+    Info (12023): Found entity 1: ldi_case3_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ldi_case3_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/ram_tb.v
+    Info (12023): Found entity 1: ram_tb File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/ram_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_ld.v
+    Info (12023): Found entity 1: datapath_tb_ld File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_ld.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file mux2to1_32.v
+    Info (12023): Found entity 1: mux2to1_32 File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/mux2to1_32.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file con_ff_logic.v
+    Info (12023): Found entity 1: con_ff_logic File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/con_ff_logic.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_sra.v
     Info (12023): Found entity 1: datapath_tb_sra File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_sra.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_sll.v
@@ -331,13 +530,12 @@ Info (12021): Found 1 design units, including 1 entities, in source file registe
     Info (12023): Found entity 1: program_counter File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/program_counter.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file bus.v
     Info (12023): Found entity 1: bus File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/bus.v Line: 1
-Warning (12019): Can't analyze file -- file datapath_tb.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file registers/register_64.v
     Info (12023): Found entity 1: register_64 File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_64.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/register_32.v
     Info (12023): Found entity 1: register_32 File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_32.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/register_file.v
-    Info (12023): Found entity 1: register_file File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v Line: 2
+    Info (12023): Found entity 1: register_file File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file datapath.v
     Info (12023): Found entity 1: datapath File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registers/mdr.v
@@ -348,110 +546,83 @@ Info (12021): Found 1 design units, including 1 entities, in source file alu/add
     Info (12023): Found entity 1: adder_32bit File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/datapath_tb_and.v
     Info (12023): Found entity 1: datapath_tb_and File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_and.v Line: 2
-Info (12127): Elaborating entity "datapath_tb_rol" for the top level hierarchy
-Warning (10755): Verilog HDL warning at datapath_tb_rol.v(47): assignments to clock create a combinational loop File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 47
-Info (10264): Verilog HDL Case Statement information at datapath_tb_rol.v(52): all case item expressions in this case statement are onehot File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 52
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "clear", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "BusDataSelect", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "GP_addr", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_MAR", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_Z", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_PC", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_MDR", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_IR", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_Y", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_GP", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_HI", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "e_LO", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "incPC", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "MDR_read", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "alu_op", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Warning (10240): Verilog HDL Always Construct warning at datapath_tb_rol.v(68): inferring latch(es) for variable "Mdatain", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[0]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[1]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[2]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[3]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[4]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[5]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[6]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[7]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[8]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[9]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[10]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[11]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[12]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[13]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[14]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[15]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[16]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[17]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[18]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[19]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[20]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[21]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[22]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[23]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[24]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[25]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[26]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[27]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[28]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[29]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[30]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "Mdatain[31]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "alu_op[0]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "alu_op[1]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "alu_op[2]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "alu_op[3]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "MDR_read" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "incPC" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_LO" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_HI" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_GP" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_Y" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_IR" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_MDR" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_PC" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_Z" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "e_MAR" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "GP_addr[0]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "GP_addr[1]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "GP_addr[2]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "GP_addr[3]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "BusDataSelect[0]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "BusDataSelect[1]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "BusDataSelect[2]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "BusDataSelect[3]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "BusDataSelect[4]" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (10041): Inferred latch for "clear" at datapath_tb_rol.v(68) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 68
-Info (12128): Elaborating entity "datapath" for hierarchy "datapath:DUT" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 39
-Info (12128): Elaborating entity "register_file" for hierarchy "datapath:DUT|register_file:GP_reg" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 41
-Warning (10240): Verilog HDL Always Construct warning at register_file.v(16): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Registers/register_file.v Line: 16
-Info (12128): Elaborating entity "program_counter" for hierarchy "datapath:DUT|program_counter:PC" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 44
-Info (12128): Elaborating entity "register_32" for hierarchy "datapath:DUT|register_32:IR" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 45
-Info (12128): Elaborating entity "alu" for hierarchy "datapath:DUT|alu:ALU" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 50
-Info (12128): Elaborating entity "adder_32bit" for hierarchy "datapath:DUT|alu:ALU|adder_32bit:u_adder" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 51
-Info (12128): Elaborating entity "full_adder" for hierarchy "datapath:DUT|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v Line: 21
-Info (12128): Elaborating entity "subtractor_32bit" for hierarchy "datapath:DUT|alu:ALU|subtractor_32bit:u_sub" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 59
-Info (12128): Elaborating entity "booth_multiplier" for hierarchy "datapath:DUT|alu:ALU|booth_multiplier:u_mult" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 66
+Info (12021): Found 1 design units, including 1 entities, in source file ram.v
+    Info (12023): Found entity 1: ram File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file select_encode.v
+    Info (12023): Found entity 1: select_encode File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/select_encode.v Line: 1
+Info (12127): Elaborating entity "minisrc_tb" for the top level hierarchy
+Warning (10755): Verilog HDL warning at minisrc_tb.v(38): assignments to Clock create a combinational loop File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 38
+Info (12128): Elaborating entity "minisrc" for hierarchy "minisrc:uut" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 27
+Warning (10034): Output port "Halt" at minisrc.v(10) has no driver File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 10
+Info (12128): Elaborating entity "control_unit" for hierarchy "minisrc:uut|control_unit:CU" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 45
+Warning (10235): Verilog HDL Always Construct warning at control_unit.v(769): variable "CON_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/control_unit.v Line: 769
+Info (10264): Verilog HDL Case Statement information at control_unit.v(334): all case item expressions in this case statement are onehot File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/control_unit.v Line: 334
+Info (12128): Elaborating entity "datapath" for hierarchy "minisrc:uut|datapath:DP" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc.v Line: 67
+Info (12128): Elaborating entity "register_file" for hierarchy "minisrc:uut|datapath:DP|register_file:GP_reg" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 81
+Info (12128): Elaborating entity "program_counter" for hierarchy "minisrc:uut|datapath:DP|program_counter:PC" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 84
+Info (12128): Elaborating entity "register_32" for hierarchy "minisrc:uut|datapath:DP|register_32:IR" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 85
+Info (12128): Elaborating entity "select_encode" for hierarchy "minisrc:uut|datapath:DP|select_encode:SE_Logic" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 87
+Info (12128): Elaborating entity "mux2to1_32" for hierarchy "minisrc:uut|datapath:DP|mux2to1_32:mux_ALU_B" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 99
+Info (12128): Elaborating entity "alu" for hierarchy "minisrc:uut|datapath:DP|alu:ALU" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 101
+Info (12128): Elaborating entity "adder_32bit" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 51
+Info (12128): Elaborating entity "full_adder" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|adder_32bit:u_adder|full_adder:adder_gen[0].fa_inst" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/adder_32bit.v Line: 21
+Info (12128): Elaborating entity "subtractor_32bit" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|subtractor_32bit:u_sub" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 59
+Info (12128): Elaborating entity "booth_multiplier" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|booth_multiplier:u_mult" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 66
 Warning (10199): Verilog HDL Case Statement warning at booth_multiplier.v(26): case item expression never matches the case expression File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 26
 Info (10264): Verilog HDL Case Statement information at booth_multiplier.v(25): all case item expressions in this case statement are onehot File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/booth_multiplier.v Line: 25
-Info (12128): Elaborating entity "divider" for hierarchy "datapath:DUT|alu:ALU|divider:u_div" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 74
+Info (12128): Elaborating entity "divider" for hierarchy "minisrc:uut|datapath:DP|alu:ALU|divider:u_div" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/alu.v Line: 74
 Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "R", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
 Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "Q", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
 Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "M", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
 Warning (10240): Verilog HDL Always Construct warning at divider.v(14): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ALU/divider.v Line: 14
-Info (12128): Elaborating entity "register_64" for hierarchy "datapath:DUT|register_64:Z" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 52
-Info (12128): Elaborating entity "mdr" for hierarchy "datapath:DUT|mdr:MDR" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 58
-Info (12128): Elaborating entity "bus" for hierarchy "datapath:DUT|bus:bus" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 65
+Info (12128): Elaborating entity "register_64" for hierarchy "minisrc:uut|datapath:DP|register_64:Z" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 103
+Info (12128): Elaborating entity "mdr" for hierarchy "minisrc:uut|datapath:DP|mdr:MDR" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 110
+Info (12128): Elaborating entity "ram" for hierarchy "minisrc:uut|datapath:DP|ram:RAM" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 113
+Warning (10240): Verilog HDL Always Construct warning at ram.v(19): inferring latch(es) for variable "data_out", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[0]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[1]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[2]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[3]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[4]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[5]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[6]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[7]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[8]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[9]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[10]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[11]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[12]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[13]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[14]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[15]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[16]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[17]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[18]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[19]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[20]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[21]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[22]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[23]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[24]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[25]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[26]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[27]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[28]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[29]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[30]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (10041): Inferred latch for "data_out[31]" at ram.v(19) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/ram.v Line: 19
+Info (12128): Elaborating entity "con_ff_logic" for hierarchy "minisrc:uut|datapath:DP|con_ff_logic:CON_FF" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 117
+Warning (10240): Verilog HDL Always Construct warning at con_ff_logic.v(9): inferring latch(es) for variable "CON_out", which holds its previous value in one or more paths through the always construct File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/con_ff_logic.v Line: 9
+Info (10041): Inferred latch for "CON_out" at con_ff_logic.v(9) File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/con_ff_logic.v Line: 9
+Info (12128): Elaborating entity "bus" for hierarchy "minisrc:uut|datapath:DP|bus:Bus" File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/datapath.v Line: 151
 Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "clock" is missing source, defaulting to GND File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_rol.v Line: 4
+    Warning (12110): Net "Clock" is missing source, defaulting to GND File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/minisrc_tb.v Line: 5
 Info (144001): Generated suppressed messages file D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/output_files/Mini_SRC_CPU.map.smsg
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 27 warnings
-    Info: Peak virtual memory: 4784 megabytes
-    Info: Processing ended: Thu Feb 27 22:55:53 2025
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:17
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 4796 megabytes
+    Info: Processing ended: Thu Apr 03 08:03:57 2025
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:18
 
 
 +--------------------------------------------+

@@ -1,3 +1,5 @@
+Warning (10268): Verilog HDL information at mflo_tb.v(93): always construct contains both blocking and non-blocking assignments File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/mflo_tb.v Line: 93
+Warning (10268): Verilog HDL information at mfhi_tb.v(93): always construct contains both blocking and non-blocking assignments File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/mfhi_tb.v Line: 93
 Warning (10268): Verilog HDL information at datapath_tb_sra.v(68): always construct contains both blocking and non-blocking assignments File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_sra.v Line: 68
 Warning (10268): Verilog HDL information at datapath_tb_sll.v(68): always construct contains both blocking and non-blocking assignments File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_sll.v Line: 68
 Warning (10268): Verilog HDL information at datapath_tb_shr.v(68): always construct contains both blocking and non-blocking assignments File: D:/Users/ejele/Documents/Quartus/Mini_SRC_CPU/Testbenches/datapath_tb_shr.v Line: 68

@@ -7,7 +7,7 @@ module register_32 (
 );
 
     // Register data storage logic
-    always @(posedge clk or posedge clr) begin
+    always @(negedge clk or posedge clr) begin
         if (clr) begin
             Q <= 32'b0; // Clear register to zero on reset
         end else if (enable) begin
